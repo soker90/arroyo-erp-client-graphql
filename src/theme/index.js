@@ -10,4 +10,3 @@ const baseTheme = {
 };
 
 export const theme = createMuiTheme(baseTheme);
-export const themeWithRtl = createMuiTheme({ ...baseTheme, direction: 'rtl' });

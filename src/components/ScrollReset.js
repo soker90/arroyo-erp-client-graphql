@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router';
+import {useEffect, memo} from 'react';
+import {useLocation} from 'react-router';
 
-function ScrollReset() {
+const ScrollReset = memo(() => {
   const location = useLocation();
 
   useEffect(() => {
@@ -9,6 +9,8 @@ function ScrollReset() {
   }, [location.pathname]);
 
   return null;
-}
+});
+
+ScrollReset.displayName = 'ScrollReset';
 
 export default ScrollReset;
