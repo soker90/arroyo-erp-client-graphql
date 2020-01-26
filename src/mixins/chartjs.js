@@ -1,11 +1,11 @@
-import { Chart } from 'react-chartjs-2';
+import {Chart} from 'react-chartjs-2';
 
 // ChartJS extension rounded bar chart
 // https://codepen.io/jedtrow/full/ygRYgo
 function draw() {
-  const { ctx } = this._chart;
+  const {ctx} = this._chart;
   const vm = this._view;
-  let { borderWidth } = vm;
+  let {borderWidth} = vm;
 
   let left;
   let right;
@@ -18,7 +18,7 @@ function draw() {
 
   // If radius is less than 0 or is large enough to cause drawing errors a max
   //      radius is imposed. If cornerRadius is not defined set it to 0.
-  let { cornerRadius } = this._chart.config.options;
+  let {cornerRadius} = this._chart.config.options;
   if (cornerRadius < 0) {
     cornerRadius = 0;
   }
@@ -190,5 +190,5 @@ function draw() {
 }
 
 Chart.helpers.extend(Chart.elements.Rectangle.prototype, {
-  draw
+  draw,
 });

@@ -1,0 +1,67 @@
+import React, {forwardRef} from 'react';
+import PropTypes from 'prop-types';
+import clsx from 'clsx';
+import {
+  Paper, IconButton, Typography,
+} from '@material-ui/core';
+import CheckCircleIcon from '@material-ui/icons/CheckCircleOutlined';
+import CloseIcon from '@material-ui/icons/CloseOutlined';
+import ErrorIcon from '@material-ui/icons/ErrorOutlined';
+import InfoIcon from '@material-ui/icons/InfoOutlined';
+import WarningIcon from '@material-ui/icons/WarningOutlined';
+import {useStyles} from './Alert.styles';
+
+const icons = {
+  default: <InfoIcon/>,
+  success: <CheckCircleIcon/>,
+  info: <InfoIcon/>,
+  warning: <WarningIcon/>,
+  error: <ErrorIcon/>,
+};
+
+const Alert = forwardRef((props, ref) => {
+  const {
+    className, icon, variant, message, onClose, ...rest
+  } = props;
+  const classes = useStyles();
+
+  return (
+    <Paper
+      {...rest}
+      className={clsx(classes.root, classes[variant], className)}
+      component={Typography}
+      elevation={1}
+      ref={ref}
+      variant="h6"
+    >
+      <span className={classes.icon}>{icon || icons[variant]}</span>
+      <div className={classes.message}>{message}</div>
+      {onClose && (
+        <IconButton
+          className={classes.action}
+          color="inherit"
+          key="close"
+          onClick={onClose}
+        >
+          <CloseIcon/>
+        </IconButton>
+      )}
+    </Paper>
+  );
+});
+
+Alert.displayName = 'Alert';
+
+Alert.propTypes = {
+  className: PropTypes.string,
+  icon: PropTypes.node,
+  message: PropTypes.string.isRequired,
+  onClose: PropTypes.func,
+  variant: PropTypes.oneOf(['default', 'info', 'success', 'warning', 'error']),
+};
+
+Alert.defaultProps = {
+  variant: 'default',
+};
+
+export default Alert;

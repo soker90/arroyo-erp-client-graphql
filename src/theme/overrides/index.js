@@ -6,12 +6,11 @@ import MuiChip from './MuiChip';
 import MuiIconButton from './MuiIconButton';
 import MuiInputBase from './MuiInputBase';
 import MuiLinearProgress from './MuiLinearProgress';
-import MuiListItem from './MuiListItem';
 import MuiListItemIcon from './MuiListItemIcon';
 import MuiOutlinedInput from './MuiOutlinedInput';
 import MuiPaper from './MuiPaper';
-import MuiTableCell from './MuiTableCell';
 import MuiTableHead from './MuiTableHead';
+import MuiTableCell from './MuiTableCell';
 import MuiTableRow from './MuiTableRow';
 import MuiToggleButton from './MuiToggleButton';
 import MuiTypography from './MuiTypography';
@@ -25,13 +24,12 @@ export default {
   MuiIconButton,
   MuiInputBase,
   MuiLinearProgress,
-  MuiListItem,
   MuiListItemIcon,
   MuiOutlinedInput,
   MuiPaper,
-  MuiTableCell,
   MuiTableHead,
+  MuiTableCell,
   MuiTableRow,
   MuiToggleButton,
-  MuiTypography
+  MuiTypography,
 };

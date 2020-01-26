@@ -17,5 +17,5 @@ const checked = (value, options) => {
 validate.validators = {
   ...validate.validators,
   regex,
-  checked
+  checked,
 };

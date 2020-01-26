@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DataContent /> Renders properly 1`] = `
+<Memo(Icon)
+  bundle="fontello"
+  glyph="circle"
+>
+  <span
+    className="rubix-icon fontello icon-fontello-circle"
+  />
+</Memo(Icon)>
+`;

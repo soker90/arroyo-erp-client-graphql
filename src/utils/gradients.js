@@ -1,6 +1,7 @@
-import { colors } from '@material-ui/core';
+import {colors} from '@material-ui/core';
 
-const buildGradient = (start, end) => `linear-gradient(180deg, ${start} 0%, ${end} 100%)`;
+const buildGradient = (start, end) =>
+  `linear-gradient(180deg, ${start} 0%, ${end} 100%)`;
 
 const grey = buildGradient(colors.grey[400], colors.grey[600]);
 const blue = buildGradient(colors.blue[700], colors.blue[900]);
@@ -15,5 +16,5 @@ export default {
   indigo,
   green,
   orange,
-  red
+  red,
 };

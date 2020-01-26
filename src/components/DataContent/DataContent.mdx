@@ -1,0 +1,27 @@
+---
+name: DataContent
+menu: Components
+route: /components/DataContent
+---
+
+import { Props, Playground } from 'docz';
+import DataContent from './DataContent';
+
+# DataContent
+
+This component is meant to wrap a simple pair of key:values formatted.
+
+<Props of={DataContent} />
+
+<Playground>
+  <DataContent title="Title1" onClick={function() {}} style={{margin: '1rem 0'}}>
+    <span>value 1</span>
+  </DataContent>
+  <DataContent title="Title2" onClick={function() {}} style={{margin: '1rem 0'}}>
+    <span>value 2</span>
+  </DataContent>
+  <DataContent title="Title3" onClick={function() {}} style={{margin: '1rem 0'}}>
+    <span>value 3</span>
+  </DataContent>
+</Playground>
+

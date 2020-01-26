@@ -15,6 +15,6 @@ moment.updateLocale('en', {
     M: '1M',
     MM: '%dM',
     y: '1Y',
-    yy: '%dY'
-  }
+    yy: '%dY',
+  },
 });

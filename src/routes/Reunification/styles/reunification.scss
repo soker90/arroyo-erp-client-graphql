@@ -1,0 +1,35 @@
+.loan-check {
+    width: 20px;
+    height: 20px;
+    float: right;
+    border-radius: 50%;
+    box-shadow: 0px 0px 4px 0px #000;
+    border-top: 2px solid #fff;
+}
+
+.loan-valid {
+    background: green;
+}
+
+.loan-invalid {
+    background: red;
+}
+
+.reu {
+    padding: 0 .5rem 0.3rem 0.5rem;
+    color: white;
+    border-radius: 2px;
+    box-shadow: 0 0 2px 0 #ddd;
+}
+
+.reu_val {
+    background-color: green;
+}
+
+.reu_gen {
+    background-color: #5bc0de;
+}
+
+.reu_ref, .reu_des {
+    background-color: red;
+}

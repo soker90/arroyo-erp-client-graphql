@@ -1,0 +1,19 @@
+---
+name: Client
+menu: Routes
+route: /routes/Client
+---
+
+import { Props, Playground, useDocs } from 'docz';
+import Client from '../components/ClientView';
+
+# Client
+
+This route renders Client View.
+
+<Props of={Client} />
+
+<Playground>
+  <Client match={{params: {clientId: '10100'}}} activeTab={{id: 8}} resetState={() => {}} />
+
+</Playground>

@@ -1,0 +1,2 @@
+export const PAYMENT_STATUS = 'PAYMENT_STATUS';
+export const SEND_JUDICIAL = 'SEND_JUDICIAL';

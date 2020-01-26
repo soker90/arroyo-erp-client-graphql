@@ -1,0 +1,23 @@
+---
+name: InputFile
+menu: Components
+route: /components/InputFile
+---
+
+import { Props, Playground } from 'docz';
+import InputFile from './InputFile';
+
+# InputFile
+
+This component is meant to render a Input type file.
+
+<Props of={InputFile} />
+
+<Playground>
+  <InputFile
+    name='contract'
+    label='Subir contrato'
+    onChange={function() {}}
+    accept='.pdf'
+  />
+</Playground>

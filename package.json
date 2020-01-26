@@ -1,95 +1,322 @@
 {
-  "name": "devias-material-kit-pro",
-  "author": "DeviasIO",
-  "email": "contact@devias.io",
-  "licence": "UNLICENSED",
-  "version": "1.3.0",
-  "private": true,
+  "name": "nera",
+  "version": "6.0.0",
+  "codename": "Bran Stark",
+  "homepage": "https://backoffice.wanna.es",
+  "description": "Backoffice para WANNA",
+  "license": "MIT",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "better-npm-run start",
+    "start:pre": "better-npm-run start:pre",
+    "start:preold": "better-npm-run start:preold",
+    "start:pres": "better-npm-run start:pres",
+    "start:prod": "better-npm-run start:prod",
+    "build": "better-npm-run build",
+    "build:pre": "better-npm-run build:pre",
+    "build:prod": "better-npm-run build:prod",
+    "test": "node scripts/test.js --env=jsdom",
+    "test:coverage": "jest --env=jsdom --coverage",
+    "lint": "./node_modules/.bin/eslint ./src/**",
+    "lint:fix": "./node_modules/.bin/eslint ./src/** --fix",
+    "docker": "docker build -t nera-frontend .",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build",
+    "doc": "docz dev"
+  },
+  "betterScripts": {
+    "start": {
+      "command": "node scripts/start.js",
+      "env": {
+        "NERA_ENV": "development",
+        "API_HOST": "http://localhost:8000/graphql",
+        "NERA_ENV_NAME": "LOCAL"
+      }
+    },
+    "start:pre": {
+      "command": "node scripts/start.js",
+      "env": {
+        "NERA_ENV": "preproduction",
+        "NERA_API_HOST": "https://neradata-pre-es.wanna.es/neraData",
+        "NERA_ENV_NAME": "PRE"
+      }
+    },
+    "start:pres": {
+      "command": "node scripts/start.js",
+      "env": {
+        "HTTPS": true,
+        "NERA_ENV": "preproduction",
+        "NERA_API_HOST": "https://neradata-pre-es.wanna.es/neraData",
+        "NERA_ENV_NAME": "PRE"
+      }
+    },
+    "start:prod": {
+      "command": "node scripts/start.js",
+      "env": {
+        "NERA_ENV": "production",
+        "NERA_API_HOST": "https://neradata-pro-es.wanna.es/neraData",
+        "NERA_ENV_NAME": "PRO"
+      }
+    },
+    "build": {
+      "command": "node scripts/build.js",
+      "env": {
+        "NODE_ENV": "development",
+        "NERA_API_HOST": "http://10.0.75.162:8090/neraData",
+        "NERA_ENV_NAME": "LOCAL"
+      }
+    },
+    "build:pre": {
+      "command": "node scripts/build.js",
+      "env": {
+        "NODE_ENV": "preproduction",
+        "NERA_API_HOST": "https://neradata-pre-es.wanna.es/neraData",
+        "NERA_ENV_NAME": "PRE"
+      }
+    },
+    "build:prod": {
+      "command": "node scripts/build.js",
+      "env": {
+        "NODE_ENV": "production",
+        "NERA_API_HOST": "https://neradata-pro-es.wanna.es/neraData",
+        "NERA_ENV_NAME": "PRO"
+      }
+    }
+  },
+  "babel": {
+    "presets": [
+      "react-app"
+    ]
+  },
+  "jest": {
+    "modulePathIgnorePatterns": [
+      "<rootDir>/scripts/"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/"
+    ],
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "src/components/util/",
+      "src/components/Tabs/",
+      "src/utils/",
+      "src/reducers/",
+      "src/redux/"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 10,
+        "functions": 0,
+        "lines": 10,
+        "statements": -1400
+      }
+    },
+    "verbose": true,
+    "moduleNameMapper": {
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    }
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "plugins": [
+      "react-hooks"
+    ],
+    "extends": "react-app",
+    "rules": {
+      "react-hooks/rules-of-hooks": "error",
+      "react-hooks/exhaustive-deps": 0,
+      "max-len": 0,
+      "import/no-extraneous-dependencies": 0,
+      "import/prefer-default-export": 0,
+      "import/no-mutable-exports": 0,
+      "import/no-unresolved": 0,
+      "import/extensions": 0,
+      "import/no-named-as-default": 0,
+      "import/no-named-default": 0,
+      "react/jsx-filename-extension": 0,
+      "react/forbid-prop-types": 0,
+      "react/require-default-props": 0,
+      "react/jsx-no-bind": 0,
+      "react/sort-comp": 0,
+      "no-underscore-dangle": 0,
+      "no-restricted-globals": 0,
+      "global-require": 0,
+      "no-console": 0,
+      "jsx-quotes": 0,
+      "object-curly-spacing": [
+        "error",
+        "never"
+      ],
+      "jsx-a11y/href-no-hash": "off",
+      "jsx-a11y/anchor-is-valid": [
+        "warn",
+        {
+          "aspects": [
+            "invalidHref"
+          ]
+        }
+      ],
+      "arrow-parens": [
+        "error",
+        "as-needed"
+      ],
+      "consistent-return": 0,
+      "comma-dangle": [
+        "error",
+        {
+          "arrays": "always-multiline",
+          "objects": "always-multiline",
+          "imports": "always-multiline",
+          "exports": "always-multiline",
+          "functions": "ignore"
+        }
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "server/**",
+    "src/lib/**",
+    "src/modules/**"
+  ],
+  "dependencies": {
+    "@ckeditor/ckeditor5-build-classic": "^16.0.0",
+    "@ckeditor/ckeditor5-react": "^2.1.0",
+    "@date-io/date-fns": "^1.3.13",
+    "@fortawesome/fontawesome-svg-core": "^1.2.26",
+    "@fortawesome/free-solid-svg-icons": "^5.12.0",
+    "@fortawesome/react-fontawesome": "^0.1.8",
+    "@material-ui/core": "^4.9.0",
+    "@material-ui/pickers": "^3.2.9",
+    "@material-ui/styles": "^4.9.0",
+    "accounting": "^0.4.1",
+    "axios": "^0.19.2",
+    "bfj": "^7.0.2",
+    "case-sensitive-paths-webpack-plugin": "^2.3.0",
+    "chalk": "^3.0.0",
+    "chart.js": "^2.9.3",
+    "classnames": "^2.2.6",
+    "clsx": "^1.0.4",
+    "connected-react-router": "^6.6.1",
+    "date-fns": "^2.9.0",
+    "disable-scroll": "^0.5.1",
+    "file-loader": "^5.0.2",
+    "font-awesome": "^4.7.0",
+    "fork-ts-checker-webpack-plugin-alt": "0.4.14",
+    "fs-extra": "^8.1.0",
+    "html-webpack-plugin": "^4.0.0-beta.8",
+    "iban": "0.0.12",
+    "immutable": "^4.0.0-rc.12",
+    "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.15",
+    "material-table": "^1.55.0",
+    "mini-css-extract-plugin": "^0.9.0",
+    "moment": "^2.24.0",
+    "node-sass": "^4.13.1",
+    "object-assign": "^4.1.1",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "pnp-webpack-plugin": "^1.5.0",
+    "prismjs": "^1.19.0",
+    "promise": "^8.0.3",
+    "prop-types": "^15.7.2",
+    "r": "0.0.5",
+    "raf": "^3.4.1",
+    "react": "^16.12.0",
+    "react-bootstrap": "^0.31.0",
+    "react-bootstrap-table": "^4.3.1",
+    "react-bootstrap-table-next": "^3.3.3",
+    "react-chartjs-2": "^2.8.0",
+    "react-datepicker": "^2.11.0",
+    "react-dev-utils": "^10.0.0",
+    "react-dom": "^16.12.0",
+    "react-fontawesome": "^1.7.1",
+    "react-markdown": "^4.3.1",
+    "react-quill": "^1.3.3",
+    "react-redux": "^7.1.3",
+    "react-redux-loading-bar": "^4.6.0",
+    "react-router-config": "^5.1.1",
+    "react-router-dom": "^5.1.2",
+    "react-router-redux": "^4.0.8",
+    "react-sortable-hoc": "^1.11.0",
+    "react-tooltip": "^3.11.2",
+    "redux": "^4.0.5",
+    "redux-crud": "^3.3.0",
+    "redux-promise-middleware": "^6.1.2",
+    "redux-thunk": "^2.3.0",
+    "resolve": "^1.15.0",
+    "rs-react-notification-system": "^0.3.0",
+    "sass-loader": "^8.0.2",
+    "seamless-immutable": "^7.1.4",
+    "styled-components": "^5.0.0",
+    "superagent": "^5.2.1",
+    "url-loader": "^3.0.0",
+    "validate.js": "^0.13.1",
+    "whatwg-fetch": "^3.0.0",
+    "workbox-webpack-plugin": "^4.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/helper-replace-supers": "^7.8.3",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@material-ui/icons": "^4.5.1",
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
+    "babel-eslint": "^10.0.3",
+    "babel-jest": "^25.1.0",
+    "babel-loader": "^8.0.5",
+    "babel-plugin-named-asset-import": "^0.3.5",
+    "babel-preset-react-app": "^9.1.0",
+    "babel-runtime": "^6.26.0",
+    "better-npm-run": "^0.1.1",
+    "css-loader": "^3.4.2",
+    "docz": "^2.2.0",
+    "docz-plugin-css": "^0.11.0",
+    "docz-theme-default": "^1.2.0",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
+    "enzyme-to-json": "^3.4.3",
+    "eslint": "^6.8.0",
+    "eslint-config-react-app": "^5.1.0",
+    "eslint-loader": "^3.0.3",
+    "eslint-plugin-flowtype": "^4.6.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.18.0",
+    "eslint-plugin-react-hooks": "^2.3.0",
+    "identity-obj-proxy": "^3.0.0",
+    "jest": "^25.1.0",
+    "jest-environment-jsdom-fourteen": "^1.0.1",
+    "jest-resolve": "^25.1.0",
+    "jest-watch-typeahead": "^0.4.2",
+    "npm-check": "^5.9.0",
+    "postcss-flexbugs-fixes": "^4.1.0",
+    "postcss-loader": "^3.0.0",
+    "postcss-preset-env": "^6.7.0",
+    "postcss-safe-parser": "4.0.1",
+    "prettier": "^1.19.1",
+    "react-test-renderer": "^16.12.0",
+    "redux-devtools": "^3.5.0",
+    "redux-devtools-extension": "^2.13.8",
+    "style-loader": "^1.1.3",
+    "terser-webpack-plugin": "^2.3.2",
+    "webpack": "^4.41.5",
+    "webpack-dev-server": "^3.10.1",
+    "webpack-manifest-plugin": "^2.2.0"
   },
   "browserslist": {
     "production": [
       ">0.2%",
-      "ie 11",
       "not dead",
       "not op_mini all"
     ],
     "development": [
-      "ie 11",
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "dependencies": {
-    "@date-io/core": "^1.3.11",
-    "@date-io/moment": "^1.3.11",
-    "@fullcalendar/core": "^4.3.1",
-    "@fullcalendar/daygrid": "^4.3.0",
-    "@fullcalendar/interaction": "^4.3.0",
-    "@fullcalendar/list": "^4.3.0",
-    "@fullcalendar/react": "^4.3.0",
-    "@fullcalendar/timegrid": "^4.3.0",
-    "@fullcalendar/timeline": "^4.3.0",
-    "@material-ui/core": "^4.6.0",
-    "@material-ui/icons": "^4.5.1",
-    "@material-ui/lab": "^4.0.0-alpha.31",
-    "@material-ui/pickers": "^3.2.7",
-    "@material-ui/styles": "^4.6.0",
-    "axios": "^0.19.0",
-    "axios-mock-adapter": "^1.17.0",
-    "chart.js": "^2.9.2",
-    "clsx": "^1.0.4",
-    "draft-js": "^0.11.2",
-    "history": "^4.10.1",
-    "immutable": "^4.0.0-rc.12",
-    "js-cookie": "^2.2.1",
-    "jss": "^10.0.0",
-    "jss-rtl": "^0.3.0",
-    "lodash": "^4.17.15",
-    "moment": "^2.24.0",
-    "node-sass": "^4.13.0",
-    "prismjs": "^1.17.1",
-    "prop-types": "^15.7.2",
-    "react": "^16.11.0",
-    "react-app-polyfill": "^1.0.4",
-    "react-beautiful-dnd": "^11.0.5",
-    "react-big-calendar": "^0.22.1",
-    "react-chartjs-2": "^2.8.0",
-    "react-dom": "^16.11.0",
-    "react-dropzone": "^10.1.10",
-    "react-helmet": "^5.2.1",
-    "react-markdown": "^4.2.2",
-    "react-paginate": "^6.3.2",
-    "react-perfect-scrollbar": "^1.5.3",
-    "react-redux": "^7.1.3",
-    "react-router": "^5.1.2",
-    "react-router-config": "^5.1.1",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "^3.2.0",
-    "redux": "^4.0.4",
-    "redux-devtools-extension": "^2.13.8",
-    "redux-thunk": "^2.3.0",
-    "uuid": "^3.3.3",
-    "validate.js": "^0.12.0"
-  },
-  "devDependencies": {
-    "eslint": "^6.6.0",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^6.5.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.16.0",
-    "eslint-plugin-react-hooks": "^2.2.0",
-    "prettier": "^1.19.1",
-    "typescript": "^3.7.2"
   }
 }

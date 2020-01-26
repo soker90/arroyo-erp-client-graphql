@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
@@ -10,22 +9,48 @@
     <meta name="theme-color" content="#000000" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <link
-      href="https://fonts.googleapis.com/css?family=Roboto+Mono|Roboto+Slab|Roboto:300,400,500,700"
+      rel="icon"
+      type="image/png"
+      sizes="192x192"
+      href="%PUBLIC_URL%/android-icon-192x192.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="%PUBLIC_URL%/favicons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="%PUBLIC_URL%/favicons/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="%PUBLIC_URL%/favicons/favicon-16x16.png"
+    />
+    <link rel="stylesheet" href="%PUBLIC_URL%/css/loading.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Maven+Pro:400,500&display=swap"
       rel="stylesheet"
+      type="text/css"
     />
-    <title>Devias Kit Pro</title>
-    <meta
-      name="description"
-      content="A professional kit that comes with ready-to-use Material-UI© components developed with one common goal in mind, help you build faster &amp; beautiful applications. Each component is fully customizable, responsive and easy to integrate."
-    />
-    <meta
-      name="keywords"
-      content="react,material,kit,application,dashboard,admin,template"
-    />
-    <meta name="author" content="Devias IO" />
+    <title>NERA</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="app-loading" class="app-loading hide-loading">
+      <section class="loaders">
+        <span class="loader loader-circles"></span>
+        <img
+          class="loading-logo"
+          src="%PUBLIC_URL%/imgs/logo.png"
+        />
+      </section>
+    </div>
     <div id="root"></div>
   </body>
 </html>

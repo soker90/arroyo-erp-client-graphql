@@ -1,0 +1,257 @@
+#body ul.myTabBar {
+    height: 75px;
+    background-color: #273135 !important;
+    width: 100%;
+    padding-left: 25px;
+}
+
+#body ul.myTabBar li.myTab {
+    height: 45px !important;
+    background-color: #C7D0D3;
+    background-image: inherit !important;
+    font-size: 13px;
+    margin-top: 35px;
+    transition: background-color .3 ease-in-out;
+}
+
+#body ul.myTabBar li.myTab:hover {
+    background-color: #E9F0F5;
+    cursor: pointer;
+}
+
+#body ul.myTabBar li.myTab p {
+    font-size: 13px;
+}
+
+#body ul.myTabBar li.myTab .tabCloseIcon {
+    color: #000 !important;
+    font-weight: bold !important;
+    right: 0px !important;
+}
+
+#body ul.myTabBar li.myTab .tabCloseIcon:hover {
+    color: #000 !important;
+    font-weight: bold !important;
+    right: 0px !important;
+    opacity: 1 !important;
+    background-color: transparent !important;
+}
+
+#body ul.myTabBar li.myTab.rdTabActive {
+    background-color: #E9F0F5 !important;
+    border-top: 5px solid #FA7252;
+    margin-top: 30px;
+}
+
+#body ul.myTabBar li.myTab.rdTabActive p {
+    font-weight: bold;
+}
+
+#body ul.myTabBar li.myTab .rdTabBefore,
+#body ul.myTabBar li.myTab .rdTabAfter {
+    display: none;
+}
+
+#body > .container-fluid {
+    margin-top: 95px !important;
+}
+
+.btn {
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+    margin-right: 3px !important;
+    line-height: 1em;
+}
+
+.nera_box_content {
+    /*border: none !important;*/
+    -webkit-border-radius: 0px !important;
+    border-radius: 0px !important;
+    -webkit-box-shadow: 2px 3px 13px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 3px 13px -6px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 3px 13px -6px rgba(0, 0, 0, 0.75);
+}
+
+.nera_box_header {
+    -webkit-border-radius: 0px !important;
+    border-radius: 0px !important;
+    background-color: #FFF !important;
+    color: #666 !important;
+    font-weight: bold;
+    padding: 5px 10px !important;
+    border-bottom: 2px solid #FA7252;
+}
+
+.nera_box_header .rubix-icon {
+    color: #FA7252;
+}
+
+.nera_box_body {
+    /* height: auto !important; */
+    padding: 20px !important;
+}
+
+.nera_data .data_row {
+    display: inline-block;
+    padding-right: 10px;
+    margin-right: 0px;
+    min-width: 100%;
+    margin-bottom: 5px;
+}
+
+.nera_data .data_title {
+    margin-right: 3px;
+}
+
+.nera_data .data_content {
+    color: #FA7252;
+    font-weight: bold;
+}
+
+.nera_box_body table {
+    margin: 10px auto;
+}
+
+.nera_box_body table td,
+.nera_box_body table th {
+    padding: 5px;
+}
+
+.nera_box_body select {
+    margin: 0px auto;
+}
+
+table.nera_table_info tr:nth-child(even) {
+    background-color: #fff;
+}
+
+table.nera_table_info tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+table.nera_table_bank th {
+    text-decoration: none;
+    background-color: #F29079;
+    color: #FFF;
+}
+
+table.funnel-table tr {
+    border-bottom: 2px solid #FFF;
+}
+
+table.funnel-table td {
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    padding: 5px 20px;
+}
+
+table.funnel-table td:before {
+    font-family: "fontello";
+    font-weight: normal;
+    display: inline-block;
+    position: absolute;
+    left: 10px;
+}
+
+table.funnel-table td.success {
+    background-color: #DFF2BF;
+    color: #4F8A10;
+}
+
+table.funnel-table td.error {
+    color: #D8000C;
+    background-color: #FFBABA;
+}
+
+table.funnel-table td.error:before {
+    content: '\e9a6';
+}
+
+table.funnel-table td.success:before {
+    content: '\ed18';
+}
+
+.nera-tooltip {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-top: 3px solid #FA7252;
+    -webkit-border-radius: 0px !important;
+    border-radius: 0px !important;
+    -webkit-box-shadow: 2px 3px 13px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 3px 13px -6px rgba(0, 0, 0, 0.75);
+    box-shadow: 2px 3px 13px -6px rgba(0, 0, 0, 0.75);
+}
+
+table.validation-table {
+    font-weight: bold;
+}
+
+table.validation-table tr:last-child {
+    border-bottom: none;
+}
+
+table.validation-table .btn-toolbar {
+    width: 100%;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+}
+
+table.validation-table .btn-toolbar .btn {
+    border-style: solid !important;
+    border-width: inherit;
+    border-right: 3px solid #FFF;
+    margin: 0px !important;
+    float: none;
+    flex-grow: 1;
+}
+
+.nera_box_buttons button {
+    margin-right: 0px;
+    border-radius: 0px;
+    display: inline-block;
+}
+
+.ReactModal__Content {
+    border-radius: 0px !important;
+    border-top: 5px solid #FA7252 !important;
+}
+
+.nera_modal_header {
+    border-bottom: none;
+}
+
+.nera_modal_header button {
+    top: 10px !important;
+    position: absolute !important;
+    right: 15px;
+    opacity: 0.6;
+}
+
+.nera_modal_header h4 {
+    font-weight: bold;
+}
+
+.nera_modal_body {
+    padding-top: 0px;
+}
+
+.react-bs-table .react-bs-container-body table {
+    margin-top: 0px;
+}
+
+.pagination > .active > a,
+.pagination > .active > a:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span,
+.pagination > .active > span:hover,
+.pagination > .active > span:focus {
+    background-color: #FA7252;
+    border-color: #FA7252;
+}

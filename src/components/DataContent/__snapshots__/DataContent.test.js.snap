@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DataContent /> Renders properly 1`] = `
+<Memo()
+  title="some title"
+>
+  <div
+    className="data_row"
+    style={Object {}}
+  >
+    <span
+      className="data_title"
+    >
+      <b>
+        some title
+        : 
+      </b>
+    </span>
+    <span
+      className="data_content"
+    >
+      Some Content
+    </span>
+  </div>
+</Memo()>
+`;

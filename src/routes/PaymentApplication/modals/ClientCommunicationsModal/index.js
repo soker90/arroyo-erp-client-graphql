@@ -1,0 +1,3 @@
+import ClientCommunicationsModalContainer from './ClientCommunicationsModalContainer';
+
+export default ClientCommunicationsModalContainer;

@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Container /> Renders properly 1`] = `
+<Memo(Container)
+  fixed="true"
+  fluid="true"
+>
+  <div
+    className="container container-fluid"
+    fixed="true"
+    fluid="true"
+  >
+    Test
+  </div>
+</Memo(Container)>
+`;

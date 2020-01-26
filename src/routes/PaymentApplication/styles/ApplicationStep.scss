@@ -1,0 +1,34 @@
+.application-panel {
+  margin-left: 8px;
+  margin-right: 8px;
+  &:first-child {
+    margin-left: 0px;
+  }
+  &:last-child {
+    margin-right: 0px;
+  }
+}
+
+.client-application-payment-form {
+  .flexed-item {
+    margin-left: 8px;
+    margin-right: 8px;
+    &:first-child {
+      margin-left: 0px;
+    }
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+}
+
+.list-group-separated-items > .list-group-item {
+  display: flex;
+  span {
+    flex-grow: 1;
+    &:last-child {
+      text-align: right !important;
+      font-weight: bold;
+    }
+  }
+}
