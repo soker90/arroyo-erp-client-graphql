@@ -23,14 +23,16 @@ export const login = ({username, password}) => dispatch => {
     {
       query: `
       mutation { 
-        auth(user: ${username}, password: ${password}) {
+        auth(user: "${username}", password: "${password}") {
           token
         }
       }`,
     },
   ).then(response => {
-    console.log(response);
-    const token = response.headers.authorization.replace('Bearer', '').trim();
+
+    const token = response.data?.data?.auth?.token;
+    console.log('____',token);
+    // const token = response.headers.authorization.replace('Bearer', '').trim();
     localStorage.setItem(ARROYO_TOKEN, token);
     setAuthorizationToken(token, dispatch);
 

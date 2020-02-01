@@ -7,5 +7,4 @@ export * from './objects';
 export * from './navigation';
 export * from './booleans';
 export * from './files';
-export * from './user-permissions';
 export * from './arrays';

@@ -23,7 +23,7 @@ export const RENAME_TAB = 'RENAME_TAB';
 // Auth
 export const LOGIN = requestActions('auth/LOGIN');
 
-// Nera
+// ARROYO
 export const SEARCH = requestActions('search/SEARCH_REQUEST');
 
 // AmortizationCommunication

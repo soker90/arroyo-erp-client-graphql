@@ -1,4 +1,4 @@
-import {
+/*import {
   CALC_ALIVE_DEBT,
   SEARCH_REMITTANCES,
   SEARCH_REMITTANCE,
@@ -25,7 +25,7 @@ import {
   DOWNLOAD_LOTS,
   UPDATE_CERT_FILE,
 } from 'action-types';
-import {CREATE_TEMPLATE, REMOVE_TEMPLATE, UPDATE_TEMPLATE} from 'routes/Templates/modules/types';
+import {CREATE_TEMPLATE, REMOVE_TEMPLATE, UPDATE_TEMPLATE} from 'routes/Templates/modules/types';*/
 
 const title = {
   info: 'INFORMACION',
@@ -44,63 +44,6 @@ function setPayload(payload) {
 }
 
 // Mandatory payload.level
-const notifications = {
-  [UPDATE_CERT_FILE.SUCCESS]: payload => setPayload(payload),
-  [DOWNLOAD_LOTS.SUCCESS]: payload => setPayload(payload),
-  [DOWNLOAD_REMITTANCES.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.DOWNLOAD_UNPAIDS.SUCCESS]: payload => setPayload(payload),
-  [GET_RECEIPT.SUCCESS]: payload => setPayload(payload),
-  [GET_PERMISSION_LIST.SUCCESS]: payload => setPayload(payload),
-  [RETURNS_GET_DATA.SUCCESS]: payload => setPayload(payload),
-  [SEARCH_REMITTANCE_RECEIPTS.SUCCESS]: payload => setPayload(payload),
-  [PA_CLIENT_COMMUNICATIONS.SUCCESS]: payload => setPayload(payload),
-  [PA_CONTRACTS.SUCCESS]: payload => setPayload(payload),
-  [APPLY_PAYMENT.SUCCESS]: payload => setPayload(payload),
-  [POSSIBLE_CLIENTS.SUCCESS]: payload => setPayload(payload),
-  [PA_INCOMES.SUCCESS]: payload => setPayload(payload),
-  [GET_RECOVERIES.SUCCESS]: payload => setPayload(payload),
-  [SEND_RECOVERY_EMAIL_LIST.SUCCESS]: payload => setPayload(payload),
-  [RECOVER_JUDICIAL.SUCCESS]: payload => setPayload(payload),
-  [LOT_TRANSFERS.SUCCESS]: payload => setPayload(payload),
-  [SET_OPERATION_COD.SUCCESS]: payload => setPayload(payload),
-  [CALC_ALIVE_DEBT.SUCCESS]: payload => setPayload(payload),
-  [SEARCH_LOTS.SUCCESS]: payload => setPayload(payload),
-  [SEARCH_LOT.SUCCESS]: payload => setPayload(payload),
-  [SEARCH_REMITTANCES.SUCCESS]: payload => setPayload(payload),
-  [SEARCH_REMITTANCE.SUCCESS]: payload => setPayload(payload),
-  [SET_USER_PERMISSIONS.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.GET_RECOVERY.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.UPDATE_RECOVERIES.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.GET.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.UPDATE.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.SAVE_RECOVERY.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.GET_IMAGES.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.GET_IMAGES.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.UPDATE_IMAGES.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.UPDATE_IMAGES.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.CONTRACTS.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.COMMUNICATIONS.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.COMMUNICATION.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.SEND_COMMUNICATION.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.SEND_EMAIL_COMMUNICATION.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.SEND_SMS_COMMUNICATION.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.CONTRACT.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.RECEIPTS.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.RECEIPT.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.UPDATE_RECEIPT.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.UPDATE_IBAN.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.UPDATE_CONTRACT.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.DOWNLOAD_CONTRACT.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.PRESCRIBER.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.SEND_TO_JUDICIAL.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.SET_CONTACT_INFO.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.GET_CONTACT_INFO.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.SEND_AMORTIZATION_TABLE.SUCCESS]: payload => setPayload(payload),
-  [CLIENT.SEND_AMORTIZATION_TABLE.REQUEST]: payload => setPayload(payload),
-  [EDIT_USER.SUCCESS]: payload => setPayload(payload),
-  [REMOVE_TEMPLATE.SUCCESS]: payload => setPayload(payload),
-  [CREATE_TEMPLATE.SUCCESS]: payload => setPayload(payload),
-  [UPDATE_TEMPLATE.SUCCESS]: payload => setPayload(payload),
-};
+const notifications = {};
 
 export default notifications;

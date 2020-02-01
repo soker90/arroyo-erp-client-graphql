@@ -1,7 +1,6 @@
 import {connect} from 'react-redux';
 import LoginView from '../components';
 import {login, logout} from 'actions/auth';
-import {checkTokenAlive} from 'actions/auth/checkTokenAlive';
 
 const mapStateToProps = ({auth, loadingBar}) => ({
   loginError: auth?.loginError,
@@ -11,7 +10,6 @@ const mapStateToProps = ({auth, loadingBar}) => ({
 const mapDispatchToProps = {
   login,
   logout,
-  checkTokenAlive,
 };
 
 export default connect(

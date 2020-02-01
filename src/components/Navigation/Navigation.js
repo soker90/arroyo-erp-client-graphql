@@ -8,7 +8,7 @@ import useRouter from 'utils/useRouter';
 import NavigationList from './components/NavigationList';
 
 
-const Navigation = memo(({title, pages, className, component: Component, permissions,...rest} ) => {
+const Navigation = memo(({title, pages, className, component: Component, ...rest} ) => {
   const classes = useStyles();
   const router = useRouter();
 
@@ -22,7 +22,6 @@ const Navigation = memo(({title, pages, className, component: Component, permiss
         depth={0}
         pages={pages}
         router={router}
-        permissions={permissions}
       />
     </Component>
   );

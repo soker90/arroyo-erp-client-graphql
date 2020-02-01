@@ -32,7 +32,7 @@ NOTA: Actualmente no está teniendo el cuenta el analisis de coverage al ejecuta
 Se declaran en el `package.json` del proyecto y van precedidas por el flag `NERA_`
 
 - NERA_API_HOST
-- NERA_ROUTER_BASE_PATH
+- ARROYO_ROUTER_BASE_PATH
 - NODE_ENV
 
 ### Instalar dependencias

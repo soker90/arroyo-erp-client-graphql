@@ -1,7 +1,6 @@
 {
-  "name": "nera",
-  "version": "6.0.0",
-  "codename": "Bran Stark",
+  "name": "arroyo-erp",
+  "version": "1.0.0",
   "homepage": "https://backoffice.wanna.es",
   "description": "Backoffice para WANNA",
   "license": "MIT",
@@ -27,58 +26,58 @@
     "start": {
       "command": "node scripts/start.js",
       "env": {
-        "NERA_ENV": "development",
+        "ARROYO_ENV": "development",
         "API_HOST": "http://localhost:8000/graphql",
-        "NERA_ENV_NAME": "LOCAL"
+        "ARROYO_ENV_NAME": "LOCAL"
       }
     },
     "start:pre": {
       "command": "node scripts/start.js",
       "env": {
-        "NERA_ENV": "preproduction",
-        "NERA_API_HOST": "https://neradata-pre-es.wanna.es/neraData",
-        "NERA_ENV_NAME": "PRE"
+        "ARROYO_ENV": "preproduction",
+        "ARROYO_API_HOST": "https://neradata-pre-es.wanna.es/neraData",
+        "ARROYO_ENV_NAME": "PRE"
       }
     },
     "start:pres": {
       "command": "node scripts/start.js",
       "env": {
         "HTTPS": true,
-        "NERA_ENV": "preproduction",
-        "NERA_API_HOST": "https://neradata-pre-es.wanna.es/neraData",
-        "NERA_ENV_NAME": "PRE"
+        "ARROYO_ENV": "preproduction",
+        "ARROYO_API_HOST": "https://neradata-pre-es.wanna.es/neraData",
+        "ARROYO_ENV_NAME": "PRE"
       }
     },
     "start:prod": {
       "command": "node scripts/start.js",
       "env": {
-        "NERA_ENV": "production",
-        "NERA_API_HOST": "https://neradata-pro-es.wanna.es/neraData",
-        "NERA_ENV_NAME": "PRO"
+        "ARROYO_ENV": "production",
+        "ARROYO_API_HOST": "https://neradata-pro-es.wanna.es/neraData",
+        "ARROYO_ENV_NAME": "PRO"
       }
     },
     "build": {
       "command": "node scripts/build.js",
       "env": {
         "NODE_ENV": "development",
-        "NERA_API_HOST": "http://10.0.75.162:8090/neraData",
-        "NERA_ENV_NAME": "LOCAL"
+        "ARROYO_API_HOST": "http://10.0.75.162:8090/neraData",
+        "ARROYO_ENV_NAME": "LOCAL"
       }
     },
     "build:pre": {
       "command": "node scripts/build.js",
       "env": {
         "NODE_ENV": "preproduction",
-        "NERA_API_HOST": "https://neradata-pre-es.wanna.es/neraData",
-        "NERA_ENV_NAME": "PRE"
+        "ARROYO_API_HOST": "https://neradata-pre-es.wanna.es/neraData",
+        "ARROYO_ENV_NAME": "PRE"
       }
     },
     "build:prod": {
       "command": "node scripts/build.js",
       "env": {
         "NODE_ENV": "production",
-        "NERA_API_HOST": "https://neradata-pro-es.wanna.es/neraData",
-        "NERA_ENV_NAME": "PRO"
+        "ARROYO_API_HOST": "https://neradata-pro-es.wanna.es/neraData",
+        "ARROYO_ENV_NAME": "PRO"
       }
     }
   },

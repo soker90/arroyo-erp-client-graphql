@@ -56,7 +56,7 @@ const PaymentButtons = memo(({show, showModalSendJudicial, clientId, showModalPa
 PaymentButtons.propTypes = {
   show: PropTypes.bool.isRequired,
   showModalSendJudicial: PropTypes.func.isRequired,
-  clientId: PropTypes.number.isRequired,
+  clientId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   showModalPaymentStatus: PropTypes.func.isRequired,
 };
 

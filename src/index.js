@@ -17,7 +17,7 @@ import App from './components/main/App';
 // import './mixins/prismjs';
 import './assets/scss/index.scss';
 
-const {APP_VERSION, NERA_ENV_NAME} = process.env;
+const {APP_VERSION, ARROYO_ENV_NAME} = process.env;
 
 // ========================================================
 // Prevent scroll
@@ -41,9 +41,9 @@ function removeLoading() {
 // Auto Update window title (navigator)
 // ========================================================
 function setWindowTitle() {
-  const title = ['NERA', APP_VERSION];
-  if (NERA_ENV_NAME) {
-    title.unshift(`[${NERA_ENV_NAME}]`);
+  const title = ['ARROYO', APP_VERSION];
+  if (ARROYO_ENV_NAME) {
+    title.unshift(`[${ARROYO_ENV_NAME}]`);
   }
 
   document.getElementsByTagName('title')[0].innerHTML = title.join(' ');

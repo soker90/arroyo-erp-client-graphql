@@ -1,17 +1,12 @@
 import React, {memo} from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
-import {
-  Avatar,
-  Typography,
-  Button,
-} from '@material-ui/core';
+import {Avatar, Button, Typography} from '@material-ui/core';
 import PersonAddIcon from '@material-ui/icons/PersonAdd';
 import ChatIcon from '@material-ui/icons/ChatOutlined';
 import AvatarImage from 'assets/logo-wanna-small.png';
 import {useStyles} from './HeaderClient.styles';
-import {TABS} from 'routes/Client/constants';
-import {PaymentButtons, CommunicationButtons} from './components';
+import {CommunicationButtons, PaymentButtons} from './components';
 
 const HeaderClient = memo((
   {
@@ -20,9 +15,19 @@ const HeaderClient = memo((
     showModalPaymentStatus, showModalSendPassword,
     showModalRegisterCommunication,
     showModalSendEmail,
-    ...rest
   }) => {
   const classes = useStyles();
+
+  /**
+   * Value TABS of client view
+   * @type {{PAYMENTS: string, CONTRACTS: string, PERSONAL_DATA: string, COMMUNICATIONS: string}}
+   */
+  const TABS = {
+    PERSONAL_DATA: 'PERSONAL_DATA',
+    PAYMENTS: 'PAYMENTS',
+    COMMUNICATIONS: 'COMMUNICATIONS',
+    CONTRACTS: 'CONTRACTS',
+  };
 
   /**
    * Render Add Contact Button
@@ -69,10 +74,8 @@ const HeaderClient = memo((
       </Button>
     </div>;
 
-
   return (
     <div
-      {...rest}
       className={clsx(classes.root, className)}
     >
       <div
@@ -110,12 +113,14 @@ HeaderClient.propTypes = {
   logo: PropTypes.any,
   title: PropTypes.string.isRequired,
   category: PropTypes.string,
-  clientId: PropTypes.number.isRequired,
+  clientId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
   showModalSendJudicial: PropTypes.func.isRequired,
   showModalModifyOtherContactData: PropTypes.func.isRequired,
   showModalPaymentStatus: PropTypes.func.isRequired,
   showModalSendPassword: PropTypes.func.isRequired,
   showModalSendEmail: PropTypes.func.isRequired,
 };
+
+HeaderClient.displayName = 'HeaderClient';
 
 export default HeaderClient;

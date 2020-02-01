@@ -6,7 +6,7 @@ import LoginRoute from './Login';
 import wannaRoutes from './routes';
 import NotFound from 'components/NotFound';
 
-const BASE_PATH = process.env.NERA_ROUTER_BASE_PATH;
+const BASE_PATH = process.env.ARROYO_ROUTER_BASE_PATH;
 
 const routes = wannaRoutes.map(({path, component, ...rest}) => {
   return (
