@@ -14,7 +14,7 @@ import {useStyles} from './ModalCloseSaveButtons.styles';
 
 
 const ModalCloseSaveButtons = memo(
-  ({show, close, title, children, action}) => {
+  ({show, close, title, children, action, headerAction}) => {
     const classes = useStyles();
 
     if (!show) {
@@ -50,7 +50,7 @@ const ModalCloseSaveButtons = memo(
           className={classes.root}
         >
           <form>
-            <CardHeader title={title}/>
+            <CardHeader title={title} action={headerAction}/>
             <Divider/>
             <CardContent>
               <Grid
@@ -73,8 +73,9 @@ ModalCloseSaveButtons.propTypes = {
   close: PropTypes.func,
   show: PropTypes.bool,
   title: PropTypes.string.isRequired,
-  children: PropTypes.object.isRequired,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
   action: PropTypes.func.isRequired,
+  headerAction: PropTypes.func,
 };
 
 ModalCloseSaveButtons.displayName = 'ModalCloseSaveButtons';

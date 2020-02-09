@@ -1,26 +1,54 @@
 import React, {memo} from 'react';
 import PropTypes from 'prop-types';
-import {Typography} from '@material-ui/core';
+import {Typography, Grid, Button} from '@material-ui/core';
 
-const HeaderGeneric = memo(({className, title, category}) =>
-  <div
+const HeaderGeneric = ({className, title, category, actions}) => {
+  const _renderButtons = (item, index) =>
+    <Button {...item} key={index}>
+      {item?.label}
+    </Button>;
+
+  return <div
     className={className}
   >
-    <Typography
-      component="h2"
-      gutterBottom
-      variant="overline"
+    <Grid
+      alignItems="flex-end"
+      container
+      justify="space-between"
+      spacing={3}
     >
-      {category}
-    </Typography>
-    <Typography
-      component="h1"
-      variant="h3"
-    >
-      {title}
-    </Typography>
-  </div>,
-);
+      <Grid item>
+        <Typography
+          component="h2"
+          gutterBottom
+          variant="overline"
+        >
+          {category}
+        </Typography>
+        <Typography
+          component="h1"
+          variant="h3"
+        >
+          {title}
+        </Typography>
+      </Grid>
+      <Grid item>
+        {actions?.map(_renderButtons)}
+      </Grid>
+    </Grid>
+  </div>
+};
+
+/**
+ * actions={[
+            {
+              icon: AddIcon,
+              tooltip: 'Nueva plantilla',
+              isFreeAction: true,
+              onClick: handleClick,
+            },
+          ]}
+ */
 
 HeaderGeneric.propTypes = {
   className: PropTypes.string,
@@ -30,4 +58,4 @@ HeaderGeneric.propTypes = {
 
 HeaderGeneric.displayName = 'HeaderGeneric';
 
-export default HeaderGeneric;
+export default memo(HeaderGeneric);

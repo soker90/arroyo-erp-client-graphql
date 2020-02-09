@@ -1,9 +1,13 @@
 import {makeStyles} from '@material-ui/styles';
-import {colors} from '@material-ui/core';
 
 export const useStyles = makeStyles(theme => ({
-  root: {
-    backgroundColor: colors.grey[300],
+  table: {
     marginTop: theme.spacing(3),
+  },
+  iconYes: {
+    color: theme.palette.notification.success,
+  },
+  iconNo: {
+    color: theme.palette.notification.error,
   },
 }));

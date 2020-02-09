@@ -1,4 +1,4 @@
-import React, {forwardRef, memo} from 'react';
+import React, {forwardRef, Fragment, memo} from 'react';
 
 import {
   AddBox,
@@ -17,8 +17,11 @@ import {
   Search,
   ViewColumn,
 } from '@material-ui/icons';
-import MaterialTable from 'material-table';
+import MaterialTable, {MTableToolbar} from 'material-table';
 import {locale} from './locale_es_ES';
+import Divider from '@material-ui/core/Divider';
+import Typography from '@material-ui/core/Typography';
+import theme from '../../theme';
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref}/>),
@@ -40,19 +43,54 @@ const tableIcons = {
   ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref}/>),
 };
 
-const TableMaterial = memo(({className, options = {}, ...rest}) =>
-  <div className={className}>
+const TableMaterial = memo(({className, options = {}, components = {}, ...rest}) => {
+  /**
+   * Render custom Toolbar
+   * @param props
+   * @returns {Fragment}
+   * @private
+   */
+  const _renderToolbar = props =>
+    <Fragment>
+      <MTableToolbar
+        {...props}
+        title={
+          <Typography component='span' variant='h5'>
+            {props.title}
+          </Typography>
+        }/>
+      <Divider/>
+    </Fragment>;
+
+  /**
+   * Establece el estilo de la fila (seleccionado o no seleccionado)
+   * @param {Object} data
+   * @param {numeric} index
+   * @returns {{backgroundColor: string}}
+   * @private
+   */
+  const _setRowStyle = (data, index) => ({
+    backgroundColor:
+      index % 2 === 0 ? theme.palette.background.default : '',
+  });
+
+  return <div className={className}>
     <MaterialTable
       icons={tableIcons}
       localization={locale}
       options={{
         pageSize: 10,
+        rowStyle: _setRowStyle,
         ...options,
+      }}
+      components={{
+        Toolbar: _renderToolbar,
+        ...components,
       }}
       {...rest}
     />
-  </div>,
-);
+  </div>
+});
 
 TableMaterial.displayName = 'TableMaterial';
 export default TableMaterial;

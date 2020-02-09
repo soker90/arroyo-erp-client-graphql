@@ -2,7 +2,7 @@ import React, {memo} from 'react';
 import {useStyles} from './DividerTab.styles';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import Divider from '@material-ui/core/Divider';
+import {Divider} from '@material-ui/core';
 
 const DividerTab = ({className}) => {
   const classes = useStyles();

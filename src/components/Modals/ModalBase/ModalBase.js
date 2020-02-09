@@ -28,12 +28,12 @@ const ModalBase = memo(
      */
     const _renderButtons = () =>
       <CardActions className={classes.actions}>
-        <Button onClick={close}  className={classes.buttonCancel}>
-          Cancelar
+        <Button onClick={close} className={classes.buttonCancel}>
+          {action ? 'Cancelar' : 'Cerrar'}
         </Button>
-        <Button onClick={action} className={classes.buttonAccept}>
+        {action && <Button onClick={action} className={classes.buttonAccept}>
           Aceptar
-        </Button>
+        </Button>}
       </CardActions>;
 
 
@@ -69,8 +69,8 @@ ModalBase.propTypes = {
   close: PropTypes.func,
   show: PropTypes.bool,
   title: PropTypes.string.isRequired,
-  children: PropTypes.object.isRequired,
-  action: PropTypes.func.isRequired,
+  children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
+  action: PropTypes.func,
 };
 
 ModalBase.displayName = 'ModalBase';
