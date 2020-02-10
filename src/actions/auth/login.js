@@ -19,7 +19,7 @@ const _loginError = error => ({
 export const login = ({username, password}) => dispatch => {
   dispatch(_loginRequest());
 
-  return axios.post('http://localhost:8000/graphql',
+  return axios.post('',
     {
       query: `
       mutation { 
@@ -28,22 +28,22 @@ export const login = ({username, password}) => dispatch => {
         }
       }`,
     },
-  ).then(response => {
+  ).then(({data}) => {
+    if (data.errors) {
+      dispatch(_loginError(data.errors[0]))
+    } else {
+      const token = data?.data?.auth?.token;
+      localStorage.setItem(ARROYO_TOKEN, token);
+      setAuthorizationToken(token, dispatch);
 
-    const token = response.data?.data?.auth?.token;
-    console.log('____',token);
-    // const token = response.headers.authorization.replace('Bearer', '').trim();
-    localStorage.setItem(ARROYO_TOKEN, token);
-    setAuthorizationToken(token, dispatch);
+      //dispatch(getDropdownValues());
 
-    //dispatch(getDropdownValues());
-
-    dispatch(_loginSet(decodeToken(token)));
-    dispatch(_loginSuccess());
-    browserHistory.push(DEFAULT_REDIRECT);
+      dispatch(_loginSet(decodeToken(token)));
+      dispatch(_loginSuccess());
+      browserHistory.push(DEFAULT_REDIRECT);
+    }
   })
-    .catch(error => {
-      console.error(error);
-      dispatch(_loginError(error));
+    .catch(({errors}) => {
+      dispatch(_loginError(errors?.[0]));
     });
 };

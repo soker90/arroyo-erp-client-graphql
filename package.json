@@ -8,7 +8,6 @@
     "start": "better-npm-run start",
     "start:pre": "better-npm-run start:pre",
     "start:preold": "better-npm-run start:preold",
-    "start:pres": "better-npm-run start:pres",
     "start:prod": "better-npm-run start:prod",
     "build": "better-npm-run build",
     "build:pre": "better-npm-run build:pre",
@@ -27,7 +26,6 @@
       "command": "node scripts/start.js",
       "env": {
         "ARROYO_ENV": "development",
-        "API_HOST": "http://localhost:8000/graphql",
         "ARROYO_ENV_NAME": "LOCAL"
       }
     },
@@ -35,16 +33,6 @@
       "command": "node scripts/start.js",
       "env": {
         "ARROYO_ENV": "preproduction",
-        "ARROYO_API_HOST": "https://neradata-pre-es.wanna.es/neraData",
-        "ARROYO_ENV_NAME": "PRE"
-      }
-    },
-    "start:pres": {
-      "command": "node scripts/start.js",
-      "env": {
-        "HTTPS": true,
-        "ARROYO_ENV": "preproduction",
-        "ARROYO_API_HOST": "https://neradata-pre-es.wanna.es/neraData",
         "ARROYO_ENV_NAME": "PRE"
       }
     },

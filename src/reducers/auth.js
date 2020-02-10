@@ -1,5 +1,4 @@
 import {LOGIN, URL_FOR_AUTHENTICATE} from 'constants/auth';
-import _ from 'lodash';
 import createReducer from 'redux/create-reducer';
 
 const LOGIN_ERRORS = {
@@ -28,15 +27,20 @@ const ACTION_HANDLERS = {
     //TODO Llevar esto al action
     let message = LOGIN_ERRORS.DEFAULT;
 
-    //TODO Quitar lodash para esto
-    switch (_.get(error, 'response.status')) {
-      case 401:
-        message = LOGIN_ERRORS.UNAUTHORIZED;
-        break;
-      case 500:
-        message = LOGIN_ERRORS.INTERNAL_SERVER_ERROR;
-        break;
-      default:
+    if (error?.message)
+      message = error.message;
+    else {
+
+      //TODO Quitar lodash para esto
+      switch (error?.statusCode) {
+        case 401:
+          message = LOGIN_ERRORS.UNAUTHORIZED;
+          break;
+        case 500:
+          message = LOGIN_ERRORS.INTERNAL_SERVER_ERROR;
+          break;
+        default:
+      }
     }
 
     return {...state, loginError: {message}};

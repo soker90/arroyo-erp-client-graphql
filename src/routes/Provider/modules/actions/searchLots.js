@@ -49,7 +49,7 @@ const _searchLotsError = error => ({
  * @param data
  * @returns {function(...[*]=)}
  */
-export const searchLots = data => async dispatch => {
+export const getProviderData = id => async dispatch => {
   dispatch(_searchLotsRequest());
 
   try {
