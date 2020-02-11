@@ -27,7 +27,6 @@ import TuneOutlinedIcon from '@material-ui/icons/TuneOutlined';
 import SupervisorAccountOutlinedIcon from '@material-ui/icons/SupervisorAccountOutlined';
 import FaceOutlinedIcon from '@material-ui/icons/FaceOutlined';
 
-
 import {Label} from 'components';
 
 const BASE_PATH = process.env.ARROYO_ROUTER_BASE_PATH;
@@ -107,7 +106,6 @@ const finance = {
   ],
 };
 
-
 const collections = {
   title: 'Recobros',
   href: `${BASE_PATH}/collections/`,
@@ -182,12 +180,41 @@ const settings = {
   ],
 };
 
+const invoice = {
+  title: 'Facturas',
+  href: `${BASE_PATH}/factura/`,
+  icon: PaymentOutlinedIcon,
+  children: [
+    {
+      title: 'Proveedores',
+      icon: ListAltOutlinedIcon,
+      href: `${BASE_PATH}/factura/proveedores/`,
+    },
+  ],
+};
+
+
+const providers = {
+  title: 'Proveedores',
+  href: `${BASE_PATH}/proveedor/`,
+  icon: PaymentOutlinedIcon,
+  children: [
+    {
+      title: 'Ejemplo',
+      icon: ListAltOutlinedIcon,
+      href: `${BASE_PATH}/proveedor`,
+    },
+  ],
+};
+
 export default [
   {
     pages: [
-      customerCare,
-      finance,
-      collections,
+      providers,
+      invoice,
+      //customerCare,
+      //finance,
+      //collections,
     ],
   },
   {

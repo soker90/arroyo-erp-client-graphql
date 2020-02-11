@@ -1,7 +1,7 @@
 // // Layout.test.js
 // import React from "react";
 // import Layout from "./Layout";
-// import {Provider} from "react-redux";
+// import {InvoicesProvider} from "react-redux";
 // import Enzyme, {mount} from "enzyme";
 // import toJSON from "enzyme-to-json";
 // import Adapter from "enzyme-adapter-react-15";
@@ -18,11 +18,11 @@
 //   let wrapper;
 //   beforeAll(() => {
 //     wrapper = mount(
-//       <Provider store={store}>
+//       <InvoicesProvider store={store}>
 //         <Layout isAuthenticated logout={jest.fn()}>
 //           Children
 //         </Layout>
-//       </Provider>
+//       </InvoicesProvider>
 //     );
 //   });
 
