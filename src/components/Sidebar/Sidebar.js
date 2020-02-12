@@ -13,6 +13,8 @@ const Sidebar = props => {
 
   const classes = useStyles();
 
+  // TODO llamar aquí al servicio que trae los nombres y los ids de los proveedores
+
   const navbarContent = (
     <div className={classes.content}>
       <nav className={classes.navigation}>

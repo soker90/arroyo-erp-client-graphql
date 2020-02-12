@@ -207,11 +207,25 @@ const providers = {
   ],
 };
 
+const albaranes = {
+  title: 'Albaranes',
+  href: `${BASE_PATH}/albaranes/`,
+  icon: PaymentOutlinedIcon,
+  children: [
+    {
+      title: 'Albaranes',
+      icon: ListAltOutlinedIcon,
+      href: `${BASE_PATH}/albaranes/proveedores`,
+    },
+  ],
+};
+
 export default [
   {
     pages: [
       providers,
       invoice,
+      albaranes,
       //customerCare,
       //finance,
       //collections,
