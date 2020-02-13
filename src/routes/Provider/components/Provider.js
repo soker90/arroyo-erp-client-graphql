@@ -8,8 +8,9 @@ import ProviderStats from './ProviderStats';
 import ProviderAlbaranTable from './ProviderAlbaranTable';
 import ProviderInvoiceTable from './ProviderInvoiceTable';
 
-const Provider = () => {
+const Provider = props => {
   const classes = useStyles();
+  console.log(props);
 
   return <ContainerTab>
     <HeaderGeneric category='Proveedores' title='La abuela'/>

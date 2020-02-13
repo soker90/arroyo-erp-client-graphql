@@ -24,7 +24,7 @@ const createRoutes = () =>
   );
 
 const routes = {
-  'proveedor': {
+  'proveedor/:_id': {
     tabName: 'Proveedor',
     component: Provider,
   },
