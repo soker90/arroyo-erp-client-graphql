@@ -6,7 +6,8 @@ import auth from './auth';
 import notifications from './notifications';
 import modal from './modal';
 
-import wannaReducers from './_prj.wanna/reducers';
+import userReducers from './userData';
+import tabs from 'components/Tabs/modules/tabs';
 
 export default history =>
   combineReducers({
@@ -15,5 +16,6 @@ export default history =>
     notifications,
     router: connectRouter(history),
     loadingBar,
-    ...wannaReducers,
+    tabs,
+    ...userReducers,
   });

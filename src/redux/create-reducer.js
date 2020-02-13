@@ -1,10 +1,11 @@
-import {has} from 'lodash';
+/**
+ * Create reducer with the new style from {key: value}
+ * @param {Object} INITIAL_STATE
+ * @param {Object} ACTION_HANDLERS
+ * @returns {function(*=, *=): *}
+ */
+const createReducer = (INITIAL_STATE, ACTION_HANDLERS) =>
+  (state = INITIAL_STATE, action) =>
+    ACTION_HANDLERS[action.type]?.(state, action) || state;
 
-export default function createReducer(INITIAL_STATE, handlers) {
-  return function reducer(state = INITIAL_STATE, action) {
-    if (has(handlers, action.type)) {
-      return handlers[action.type](state, action);
-    }
-    return state;
-  };
-}
+export default createReducer;

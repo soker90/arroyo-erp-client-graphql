@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import {Paper} from '@material-ui/core';
 
 import {Navigation} from 'components';
-import navigationConfig from './navigationConfig';
+import {getConfigSidebar} from './navigationConfig';
 import {useStyles} from './Sidebar.styles';
 
 
 const Sidebar = props => {
-  const {className, name, lastname, email, logout,  ...rest} = props;
+  const {className, name, lastname, email, logout, providers, ...rest} = props;
 
   const classes = useStyles();
 
@@ -18,7 +18,7 @@ const Sidebar = props => {
   const navbarContent = (
     <div className={classes.content}>
       <nav className={classes.navigation}>
-        {navigationConfig.map((list, idx) => (
+        {getConfigSidebar(providers).map((list, idx) => (
           <Navigation
             component="div"
             key={idx}
