@@ -2,6 +2,7 @@ import createTabComponent from 'components/Tabs/create-tab-component';
 import Provider from './Provider';
 import ProviderInvoices from './InvoicesProvider';
 import AlbaranesProvider from './AlbaranesProvider';
+import Dashboard from './Dashboard';
 
 function createRoute({path, tabName, component}) {
   const tab = {
@@ -24,7 +25,7 @@ const createRoutes = () =>
   );
 
 const routes = {
-  'proveedor/:_id': {
+  'proveedor/:id': {
     tabName: 'Proveedor',
     component: Provider,
   },
@@ -33,9 +34,13 @@ const routes = {
     component: ProviderInvoices,
   },
   'albaranes/proveedores': {
-  tabName: 'Albaranes',
+    tabName: 'Albaranes',
     component: AlbaranesProvider,
-},
+  },
+  'inicio': {
+    tabName: 'Inicio',
+    component: Dashboard,
+  },
 };
 
 export default createRoutes();

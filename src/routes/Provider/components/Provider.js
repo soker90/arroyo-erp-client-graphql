@@ -1,4 +1,5 @@
-import React, {memo} from 'react';
+import React, {memo, useEffect} from 'react';
+import PropTypes from 'prop-types';
 
 import {ContainerTab, ContentTab, DividerTab, HeaderGeneric} from 'components';
 import {useStyles} from './Provider.styles';
@@ -11,6 +12,9 @@ import ProviderInvoiceTable from './ProviderInvoiceTable';
 const Provider = props => {
   const classes = useStyles();
   console.log(props);
+  useEffect(() => {
+    props.getProvider(props.match.params.id);
+  }, [props.getProvider]);
 
   return <ContainerTab>
     <HeaderGeneric category='Proveedores' title='La abuela'/>
@@ -26,7 +30,9 @@ const Provider = props => {
   </ContainerTab>;
 };
 
-Provider.propTypes = {};
+Provider.propTypes = {
+  getProvider: PropTypes.func.isRequired,
+};
 
 Provider.displayName = 'Provider';
 

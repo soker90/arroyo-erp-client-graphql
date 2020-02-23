@@ -6,7 +6,7 @@ let authInterceptor;
 
 export const setAuthorizationToken =(token, dispatch)  => {
   if (token) {
-    axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    axios.defaults.headers.common['Authorization'] = `${token}`;
     authInterceptor = axios.interceptors.response.use(
       response => response,
       error => {

@@ -10,16 +10,16 @@ const BASE_PATH = process.env.ARROYO_ROUTER_BASE_PATH;
 
 const routes = arroyoRoutes.map(({path, component, ...rest}) => {
   return (
-    <Route path={`${BASE_PATH}/${path}`} component={component} key={path} />
+    <Route path={`${BASE_PATH}/${path}`} component={component} key={path}/>
   );
 });
 
 export default () => (
   <Router history={history}>
     <Switch>
-      <Route exact path="/login" component={LoginRoute} />
+      <Route path="/login" component={LoginRoute}/>
       {routes}
-      <Route path="*" component={NotFound} />
+      <Route path="*" component={NotFound}/>
     </Switch>
   </Router>
 );
