@@ -53,7 +53,11 @@ const HeaderGeneric = ({className, title, category, actions}) => {
 HeaderGeneric.propTypes = {
   className: PropTypes.string,
   category: PropTypes.string,
-  title: PropTypes.string.isRequired,
+  title: PropTypes.string,
+};
+
+HeaderGeneric.deafultProps = {
+  title: 'Cargando...',
 };
 
 HeaderGeneric.displayName = 'HeaderGeneric';

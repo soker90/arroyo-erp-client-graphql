@@ -1,5 +1,6 @@
 import axios from 'axios';
 import {GET_PROVIDER} from 'actions/types';
+import {renameTab} from '../../../components/Tabs/modules/tabs';
 
 /**
  * Request action for getPrivder
@@ -37,7 +38,7 @@ const _getPrivderError = error => ({
  * una vez logueado
  * @returns {function(...[*]=)}
  */
-export const getProvider = id => async dispatch => {
+export const getProvider = (id, tabId) => async dispatch => {
   dispatch(_getPrivderRequest());
 
   try {
@@ -46,17 +47,25 @@ export const getProvider = id => async dispatch => {
         query: `
           query { 
             getProvider(id: "${id}") {
+              _id
+              name
               address
+              phone
+              email
             }
           }`,
       },
     );
+
     if (data.errors) {
       dispatch(_getPrivderError(data.errors[0]));
       return;
     }
 
-    dispatch(_getPrivderSuccess(data))
+    dispatch(_getPrivderSuccess(data));
+
+    if (data?.data?.getProvider?.name)
+      dispatch(renameTab(data.data.getProvider.name, tabId));
   } catch (error) {
     dispatch(_getPrivderError(error))
   }

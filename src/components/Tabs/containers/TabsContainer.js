@@ -3,7 +3,7 @@ import TabsComponent from '../components/TabsComponent';
 import {actions} from '../modules/tabs';
 
 const mapStateToProps = ({tabs}) => ({
-  tabs: tabs.toJS(),
+  tabs,
 });
 
 const mapDispatchToProps = {...actions};

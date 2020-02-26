@@ -41,7 +41,7 @@ class TabItemComponent extends PureComponent {
           <span>{tab.title}</span>
         </div>
         <div className="tab-close" onClick={this.removeTab}>
-          <FontAwesomeIcon icon={faTimes} />
+          <FontAwesomeIcon icon={faTimes}/>
         </div>
       </div>
     );
@@ -50,11 +50,12 @@ class TabItemComponent extends PureComponent {
 
 const TabItem = SortableElement(TabItemComponent);
 
-const TabListComponent = memo(function TabListComponent({
-  items,
-  removeTab,
-  activateTab,
-}) {
+const TabListComponent = (
+  {
+    items,
+    removeTab,
+    activateTab,
+  }) => {
   const tabs = items.map((tab, index) => (
     <TabItem
       key={tab.id}
@@ -66,7 +67,7 @@ const TabListComponent = memo(function TabListComponent({
   ));
 
   return <div className="tab-list">{tabs}</div>;
-});
+};
 
 const TabList = SortableContainer(TabListComponent);
 

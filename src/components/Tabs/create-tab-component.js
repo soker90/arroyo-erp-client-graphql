@@ -7,54 +7,54 @@ import {Container} from 'components/Container';
 import browserHistory from 'redux/history';
 
 export default (tab, ActiveTabContent) => {
-  const TabsContainerComponent = memo(props => {
+  const TabsContainerComponent = props => {
     const preTabSizeRef = useRef();
     useEffect(() => {
-      preTabSizeRef.current = props.tabs.size;
+      preTabSizeRef.current = props.tabs.length;
       props.activateTab({
         ...tab,
         id: props.location.pathname,
         link: props.location.pathname,
       });
-      //eslint-disable-next-line
     }, [props.activateTab]);
 
     useEffect(() => {
-      if (preTabSizeRef.current  > props.tabs.size) {
-        const tabs = props.tabs.toJS();
+      if (preTabSizeRef.current > props.tabs.length) {
+        const tabs = props.tabs;
         const activeTab = tabs.find(t => t.active);
         if (activeTab && activeTab.link !== props.location.pathname) {
           browserHistory.push(activeTab.id);
         }
       }
-      preTabSizeRef.current = props.tabs.size;
-      // eslint-disable-next-line
-    }, [props.tabs.size]);
+      preTabSizeRef.current = props.tabs.length;
+    }, [props.tabs.length]);
 
 
-    const _renderTab = activeTab => <ActiveTabContent {...props} activeTab={activeTab} />;
+    const _renderTab = activeTab => <ActiveTabContent {...props} activeTab={activeTab}/>;
 
-    const _renderEmpty = () => <div style={{backgroundColor: '#273135', height: '100vh'}} />;
+    const _renderEmpty = () => <div style={{backgroundColor: '#273135', height: '100vh'}}/>;
 
-      const activeTab = props.tabs.toJS().find(t => t.active);
-      const showTab =
-        activeTab && activeTab.link === props.location.pathname;
+    const activeTab = props.tabs.find(t => t.active);
+    const showTab =
+      activeTab && activeTab.link === props.location.pathname;
 
-      return (
-        <Layout>
-          <Container id="body">
-            {showTab ? _renderTab(activeTab) : _renderEmpty()}
-          </Container>
-        </Layout>
-      );
-  });
+    return (
+      <Layout>
+        <Container id="body">
+          {showTab ? _renderTab(activeTab) : _renderEmpty()}
+        </Container>
+      </Layout>
+    );
+  };
 
   TabsContainerComponent.propTypes = {
     auth: PropTypes.object.isRequired,
-    tabs: PropTypes.object.isRequired,
+    tabs: PropTypes.array.isRequired,
     location: PropTypes.object.isRequired,
     activateTab: PropTypes.func.isRequired,
   };
+
+  TabsContainerComponent.displayName = 'TabsContainerComponent';
 
   const mapStateToProps = ({tabs, router, auth}) => ({
     tabs,
@@ -66,6 +66,6 @@ export default (tab, ActiveTabContent) => {
 
   return connect(
     mapStateToProps,
-    mapDispatchToProps
-  )(TabsContainerComponent);
+    mapDispatchToProps,
+  )(memo(TabsContainerComponent));
 };

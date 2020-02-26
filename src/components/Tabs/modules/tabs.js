@@ -1,7 +1,6 @@
-import Immutable from 'immutable';
-import _ from 'lodash';
-
 import createReducer from 'redux/create-reducer';
+
+// TODO: Mejorar esto en algun momento
 
 import {ACTIVATE_TAB, REMOVE_TAB, ORDER_TABS, RENAME_TAB} from 'action-types';
 
@@ -30,19 +29,19 @@ function setActiveTab(tabs, id) {
   return tabs.map(t => ({...t, active: t.id === id}));
 }
 
-const INITIAL_STATE = Immutable.fromJS([]);
+const INITIAL_STATE = [];
 
 const ACTION_HANDLERS = {
   [ACTIVATE_TAB]: (state, {tab = {}}) => {
-    let tabs = state.toJS();
+    let tabs = state.slice();
     if (!tabs.find(t => t.id === tab.id)) {
       tabs.push(tab);
     }
-    return Immutable.fromJS(setActiveTab(tabs, tab.id));
+    return setActiveTab(tabs, tab.id);
   },
 
   [REMOVE_TAB]: (state, {tab}) => {
-    let tabs = state.toJS();
+    let tabs = state.slice();
     const tabIndex = tabs.findIndex(t => t.id === tab.id);
     if (tab.active) {
       const nextIndex = tabIndex - 1;
@@ -51,12 +50,12 @@ const ACTION_HANDLERS = {
         tabs = setActiveTab(tabs, nextId);
       }
     }
-    tabs = _.reject(tabs, t => t.id === tab.id);
-    return Immutable.fromJS(tabs);
+    tabs = tabs.filter(t => t.id !== tab.id);
+    return tabs;
   },
 
   [ORDER_TABS]: (state, {oldIndex, newIndex}) => {
-    const tabs = state.toJS();
+    const tabs = state.slice();
     if (newIndex >= tabs.length) {
       let k = newIndex - tabs.length;
       while (k-- + 1) {
@@ -64,15 +63,15 @@ const ACTION_HANDLERS = {
       }
     }
     tabs.splice(newIndex, 0, tabs.splice(oldIndex, 1)[0]);
-    return Immutable.fromJS(tabs);
+    return tabs;
   },
 
   [RENAME_TAB]: (state, {name, tabId}) => {
     if (tabId) {
-      const tabs = state.toJS();
+      const tabs = state.slice();
       const tab = tabs.find(t => t.id === tabId);
       tab.title = name;
-      return Immutable.fromJS(tabs);
+      return tabs;
     }
     return state;
   },
