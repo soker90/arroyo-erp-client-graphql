@@ -5,12 +5,12 @@ import {logout} from 'actions/auth';
 
 import {Container} from 'components/Container';
 import Loading from 'components/Loading';
-import Dashboard from './Dashboard';
-import {getInitData} from '../actions/init';
+// import Dashboard from './Dashboard';
+// import {getInitData} from '../actions/init';
 
-// const SidebarOld = lazy(() => import('components/SidebarOld'));
+const Dashboard = lazy(() => import('./Dashboard'));
 
-const PageWithLayout = ({isAuthenticated, logout, children, getInitData}) => {
+const PageWithLayout = ({isAuthenticated, logout, children}) => {
   useEffect(() => {
     _checkAuth();
     //eslint-disable-next-line
@@ -20,9 +20,9 @@ const PageWithLayout = ({isAuthenticated, logout, children, getInitData}) => {
     if (!isAuthenticated) {
       logout();
       return;
-    } else {
+    } /* else {
       getInitData();
-    }
+    } */
   };
 
   return (
@@ -50,7 +50,7 @@ const mapStateToProps = ({auth}) => ({
 
 const mapDispatchToProps = {
   logout,
-  getInitData,
+  // getInitData,
 };
 
 export default connect(

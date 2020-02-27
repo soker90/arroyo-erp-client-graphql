@@ -1,5 +1,6 @@
 import createTabComponent from 'components/Tabs/create-tab-component';
 import Provider from './Provider';
+import Providers from './Providers';
 import ProviderInvoices from './InvoicesProvider';
 import AlbaranesProvider from './AlbaranesProvider';
 import Dashboard from './Dashboard';
@@ -25,6 +26,10 @@ const createRoutes = () =>
   );
 
 const routes = {
+  'proveedor/listado': {
+    tabName: 'Proveedores',
+    component: Providers,
+  },
   'proveedor/:id': {
     tabName: 'Proveedor',
     component: Provider,

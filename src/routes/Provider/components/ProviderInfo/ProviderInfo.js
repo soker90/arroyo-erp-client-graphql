@@ -7,15 +7,21 @@ import {useStyles} from './ProviderInfo.styles';
 
 const ProviderInfo = (
   {
-    name, address, phone, email,
+    name, address, phone, email, showEditProviderModal,
   }) => {
   const classes = useStyles();
 
+  /**
+   * Show modal for edit provider
+   * @private
+   */
+  const _showEditProviderModal = () => {
+    showEditProviderModal();
+  };
+
   const _renderEditButton = () =>
     <Tooltip title='Editar infomación'>
-      <IconButton size="small" className={classes.button} onClick={() => {
-        console.log('click')
-      }}>
+      <IconButton size="small" className={classes.button} onClick={_showEditProviderModal}>
         <EditIcon/>
       </IconButton>
     </Tooltip>;

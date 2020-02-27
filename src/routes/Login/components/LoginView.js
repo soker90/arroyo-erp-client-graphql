@@ -1,12 +1,17 @@
-import React, {memo} from 'react';
+import React, {memo, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {Grid, LinearProgress} from '@material-ui/core';
 import Auth from 'layouts/Auth';
 import LoginForm from './LoginForm';
 import {useStyles} from './Login.styles';
+import {checkTokenAlive} from 'utils/checkTokenAlive';
 
-const LoginView = memo(({login, loginError, isLoading}) => {
+const LoginView = ({login, loginError, isLoading}) => {
   const classes = useStyles();
+
+  useEffect(() => {
+    checkTokenAlive();
+  }, [login])
 
   /**
    * Render loading bar
@@ -45,7 +50,7 @@ const LoginView = memo(({login, loginError, isLoading}) => {
       </div>
     </Auth>
   );
-});
+};
 
 LoginView.propTypes = {
   login: PropTypes.func.isRequired,
@@ -54,4 +59,4 @@ LoginView.propTypes = {
 
 LoginView.displayName = 'LoginView';
 
-export default LoginView;
+export default memo(LoginView);

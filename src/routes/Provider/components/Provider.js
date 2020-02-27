@@ -9,7 +9,7 @@ import ProviderStats from './ProviderStats';
 import ProviderAlbaranTable from './ProviderAlbaranTable';
 import ProviderInvoiceTable from './ProviderInvoiceTable';
 
-const Provider = ({provider, match, getProvider, activeTab: {id: tabId}}) => {
+const Provider = ({provider, match, getProvider, activeTab: {id: tabId}, showEditProviderModal}) => {
   const classes = useStyles();
   useEffect(() => {
     getProvider(match.params.id, tabId);
@@ -20,7 +20,10 @@ const Provider = ({provider, match, getProvider, activeTab: {id: tabId}}) => {
     <DividerTab/>
     <ContentTab>
       <Grid container spacing={3}>
-        <ProviderInfo name={provider.name} address={provider.address} email={provider.email} phone={provider.phone}/>
+        <ProviderInfo
+          showEditProviderModal={showEditProviderModal}
+          {...provider}
+        />
         <ProviderStats name='8' address='C/Alcantarilal, 3' email='abuela@abuela.es' phone='926926926'/>
       </Grid>
       <ProviderInvoiceTable/>
@@ -32,6 +35,7 @@ const Provider = ({provider, match, getProvider, activeTab: {id: tabId}}) => {
 Provider.propTypes = {
   getProvider: PropTypes.func.isRequired,
   provider: PropTypes.object.isRequired,
+  showEditProviderModal: PropTypes.func.isRequired,
 };
 
 Provider.displayName = 'Provider';

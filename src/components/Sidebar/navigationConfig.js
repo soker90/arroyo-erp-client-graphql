@@ -198,15 +198,14 @@ const providers = {
   title: 'Proveedores',
   href: `${BASE_PATH}/proveedor/`,
   icon: PaymentOutlinedIcon,
-  children: [],
+  children: [
+    {
+      title: 'Listado de provedores',
+      icon: ListAltOutlinedIcon,
+      href: `${BASE_PATH}/proveedor/listado/`,
+    },
+  ],
 };
-
-const _createProviderChild = item => (
-  {
-    title: item.name,
-    href: `${BASE_PATH}/proveedor/${item._id}`,
-  }
-);
 
 
 const albaranes = {
@@ -222,10 +221,10 @@ const albaranes = {
   ],
 };
 
-export const getConfigSidebar = providersList => [
+export const getConfigSidebar = [
   {
     pages: [
-      {...providers, children: providersList.map(_createProviderChild)},
+      providers,
       invoice,
       albaranes,
       //customerCare,
