@@ -17,7 +17,8 @@ const routes = arroyoRoutes.map(({path, component, ...rest}) => {
 export default () => (
   <Router history={history}>
     <Switch>
-      <Route path="/login" component={LoginRoute}/>
+      <Route exact path="/" component={LoginRoute} />
+      <Route exact path="/login" component={LoginRoute}/>
       {routes}
       <Route path="*" component={NotFound}/>
     </Switch>

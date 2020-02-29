@@ -69,7 +69,7 @@ const TabListComponent = (
   return <div className="tab-list">{tabs}</div>;
 };
 
-const TabList = SortableContainer(TabListComponent);
+const TabList = SortableContainer(memo(TabListComponent));
 
 class TabsComponents extends PureComponent {
   static propTypes = {

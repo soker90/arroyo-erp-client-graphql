@@ -56,9 +56,21 @@ const LoginForm = memo(({login, loginError, isLoading}) => {
       variant="outlined"
     />;
 
+  /**
+   * Press Enter key event
+   * @param {Object} ev
+   * @private
+   */
+  const _handleKeyPress = ev => {
+    if (ev.key === 'Enter') {
+      handleSubmit(ev);
+    }
+  };
 
-  return <div
+
+  return <form
     className={classes.form}
+    onKeyPress={_handleKeyPress}
   >
     <Typography
       className={classes.title}
@@ -90,7 +102,7 @@ const LoginForm = memo(({login, loginError, isLoading}) => {
     >
       Entrar
     </Button>
-  </div>
+  </form>
 });
 
 LoginForm.propTypes = {

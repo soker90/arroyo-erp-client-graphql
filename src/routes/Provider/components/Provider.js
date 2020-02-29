@@ -8,6 +8,7 @@ import ProviderInfo from './ProviderInfo';
 import ProviderStats from './ProviderStats';
 import ProviderAlbaranTable from './ProviderAlbaranTable';
 import ProviderInvoiceTable from './ProviderInvoiceTable';
+import ProviderProductTable from './ProviderProductTable';
 
 const Provider = ({provider, match, getProvider, activeTab: {id: tabId}, showEditProviderModal}) => {
   const classes = useStyles();
@@ -28,6 +29,7 @@ const Provider = ({provider, match, getProvider, activeTab: {id: tabId}, showEdi
       </Grid>
       <ProviderInvoiceTable/>
       <ProviderAlbaranTable/>
+      <ProviderProductTable/>
     </ContentTab>
   </ContainerTab>;
 };
