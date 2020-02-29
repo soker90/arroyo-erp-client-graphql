@@ -11,8 +11,8 @@ export const setAuthorizationToken =(token, dispatch)  => {
       response => response,
       error => {
         const jwtExpired =
-          error.response.status === 500 &&
-          /JWT expired/.test(error.response.data.message);
+          error.response.status === 400 &&
+          /Acceso denegado/.test(error.response.data?.errors?.[0]?.message);
         if (
           (error.response && [401].includes(error.response.status)) ||
           jwtExpired

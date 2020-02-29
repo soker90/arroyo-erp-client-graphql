@@ -247,6 +247,7 @@
     "@babel/core": "^7.8.3",
     "@babel/helper-replace-supers": "^7.8.3",
     "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@babel/plugin-proposal-throw-expressions": "^7.8.3",
     "@material-ui/icons": "^4.5.1",
     "@typescript-eslint/eslint-plugin": "^2.17.0",
     "@typescript-eslint/parser": "^2.17.0",

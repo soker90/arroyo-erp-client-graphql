@@ -1,6 +1,5 @@
 import {addNotification} from 'reducers/notifications';
 import notifications from './notifications';
-import {get} from 'lodash';
 
 export const notificationDefaultParams = {
   title: '',
@@ -13,20 +12,20 @@ export const notificationDefaultParams = {
 
 const failureRegexp = /_FAILURE$/;
 const deniedAccess = 'No tienes permiso para ver este recurso';
+const internalError = '500: Error en el servidor';
 
-function parseErrorMessage(errorObj) {
-  const data = get(errorObj, 'response.data', {});
-  let {title, code, status, error, message, exception} = data;
+const _parseErrorMessage = ({response}) => {
+  const statusCatch = response?.status;
+  if (statusCatch === 500)
+    return [internalError];
 
-  error = error === 'Forbidden' ? deniedAccess : error;
-  title = title || error;
-  code = code || status || '';
-  title = `[${code}] - ${title}`;
-  message = exception ? `${message} - ${exception}` : message;
-  message = message || error;
-
-  return [message, title];
-}
+  const errors = response?.data.errors;
+  return errors.map(({message}) => message);
+  // let {error, message, exception} = ;
+  //error = error === 'Forbidden' ? deniedAccess : error;
+  //message = exception ? `${message} - ${exception}` : message;
+  // message = message || error;
+};
 
 const notificationsMiddleware = store => next => action => {
   const notification = notifications[action.type];
@@ -43,18 +42,20 @@ const notificationsMiddleware = store => next => action => {
       store.dispatch(notificationAction);
     }
   } else if (failureRegexp.test(action.type)) {
-    const [message] = parseErrorMessage(action.error);
+    const errors = _parseErrorMessage(action?.error);
+    console.log(errors)
+    if (errors.length) {
+      errors.forEach(message => {
+        const notificationAction = addNotification({
+          ...notificationDefaultParams,
+          level: 'error',
+          message,
+          autoDismiss: 3,
+          dismissible: true,
+        });
 
-    if (message) {
-      const notificationAction = addNotification({
-        ...notificationDefaultParams,
-        level: 'error',
-        message,
-        autoDismiss: 0,
-        dismissible: true,
+        store.dispatch(notificationAction);
       });
-
-      store.dispatch(notificationAction);
     }
   }
 

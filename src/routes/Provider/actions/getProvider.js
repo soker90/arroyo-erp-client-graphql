@@ -47,7 +47,7 @@ export const getProvider = (id, tabId) => async dispatch => {
         query: `
           query { 
             getProvider(id: "${id}") {
-              _id
+              id
               name
               address
               phone
@@ -56,6 +56,7 @@ export const getProvider = (id, tabId) => async dispatch => {
           }`,
       },
     );
+    console.log(data)
 
     if (data.errors) {
       dispatch(_getPrivderError(data.errors[0]));
@@ -67,6 +68,7 @@ export const getProvider = (id, tabId) => async dispatch => {
     if (data?.data?.getProvider?.name)
       dispatch(renameTab(data.data.getProvider.name, tabId));
   } catch (error) {
+    console.log(error);
     dispatch(_getPrivderError(error))
   }
 };

@@ -4,9 +4,8 @@ import {Grid, LinearProgress} from '@material-ui/core';
 import Auth from 'layouts/Auth';
 import LoginForm from './LoginForm';
 import {useStyles} from './Login.styles';
-import {checkTokenAlive} from 'utils/checkTokenAlive';
 
-const LoginView = memo(({login, loginError, isLoading, checkTokenAlive}) => {
+const LoginView = ({login, loginError, isLoading, checkTokenAlive}) => {
   const classes = useStyles();
 
   useEffect(() => {

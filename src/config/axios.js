@@ -8,12 +8,11 @@ const {ARROYO_API_HOST} = process.env;
 // ========================================================
 axios.defaults.baseURL = ARROYO_API_HOST;
 axios.defaults.withCredentials = true;
-console.log(process.env)
 export default dispatch => {
   axios.interceptors.response.use(
     response => response,
     error => {
-      if (error.response.status === 400) {
+      /* if (error.response.status === 400) {
         dispatch(
           addNotification({
             level: 'warning',
@@ -22,7 +21,7 @@ export default dispatch => {
               'Petición rechazada: Por favor, revisa los campos del formulario e inténtalo de nuevo.',
           })
         );
-      }
+      } */
       return Promise.reject(error);
     }
   );
