@@ -6,12 +6,12 @@ import LoginForm from './LoginForm';
 import {useStyles} from './Login.styles';
 import {checkTokenAlive} from 'utils/checkTokenAlive';
 
-const LoginView = ({login, loginError, isLoading}) => {
+const LoginView = memo(({login, loginError, isLoading, checkTokenAlive}) => {
   const classes = useStyles();
 
   useEffect(() => {
     checkTokenAlive();
-  }, [login])
+  }, [checkTokenAlive]);
 
   /**
    * Render loading bar
