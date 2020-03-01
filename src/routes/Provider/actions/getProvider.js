@@ -47,7 +47,7 @@ export const getProvider = (id, tabId) => async dispatch => {
         query: `
           query { 
             getProvider(id: "${id}") {
-              id
+              _id
               name
               address
               phone

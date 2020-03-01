@@ -44,13 +44,13 @@ class InfoPanel extends PureComponent {
       cursor: this.props.static ? 'default' : 'pointer',
     };
     return (
-      <Col {..._props} className="nera_box">
-        <div className="nera_box_content">
+      <Col {..._props} className="arroyo_box">
+        <div className="arroyo_box_content">
           <div
             onClick={this.handleHidden}
             style={barstyle}
-            className={`nera_box_header ${
-              this.props.static ? '' : 'nera_box_header_hover'
+            className={`arroyo_box_header ${
+              this.props.static ? '' : 'arroyo_box_header_hover'
             }`}
           >
             {this.props.title}
@@ -60,7 +60,7 @@ class InfoPanel extends PureComponent {
           </div>
 
           <div
-            className="nera_box_body"
+            className="arroyo_box_body"
             style={{
               display: this.state.hidden ? 'none' : 'block',
               width: '100%',

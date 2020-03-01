@@ -20,7 +20,7 @@ const NotFound = memo(() =>
       <Container id="auth-cell">
         <Row>
           <div style={{padding: 0}}>
-            <div className="text-center nera-title"/>
+            <div className="text-center arroyo-title"/>
             <div className="jumbotron">
               <h2>ERROR 404 - Página no encontrada</h2>
               <p>¡Oh, no! No encontramos la pàgina que estás buscando.</p>

@@ -11,8 +11,8 @@ export const notificationDefaultParams = {
 };
 
 const failureRegexp = /_FAILURE$/;
-const deniedAccess = 'No tienes permiso para ver este recurso';
 const internalError = '500: Error en el servidor';
+const unknownError = 'Error desconocido';
 
 const _parseErrorMessage = ({response}) => {
   const statusCatch = response?.status;
@@ -20,7 +20,7 @@ const _parseErrorMessage = ({response}) => {
     return [internalError];
 
   const errors = response?.data.errors;
-  return errors.map(({message}) => message);
+  return errors ? errors.map(({message}) => message) : [];
   // let {error, message, exception} = ;
   //error = error === 'Forbidden' ? deniedAccess : error;
   //message = exception ? `${message} - ${exception}` : message;
