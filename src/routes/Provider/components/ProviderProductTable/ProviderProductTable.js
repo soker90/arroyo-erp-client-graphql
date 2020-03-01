@@ -1,15 +1,16 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {TableMaterial} from 'components';
 import {useStyles} from './ProviderProductTable.styles';
 import AddIcon from '@material-ui/icons/Add';
 
-const ProviderProductTable = () => {
+const ProviderProductTable = ({products}) => {
   const classes = useStyles();
 
   const _onRowClick = row => {
 
   };
 
+  console.log(products)
   return (
     <TableMaterial
       className={classes.table}
@@ -18,11 +19,7 @@ const ProviderProductTable = () => {
         {title: 'Precio', field: 'amount'},
         {title: 'Fecha de actualización', field: 'updateDate'},
       ]}
-      data={[
-        {name: 'Huevos', updateDate: '19/01/2020', amount: '30,50€'},
-        {name: 'Pollo', updateDate: '19/01/2020', amount: '9,40€'},
-        {name: 'Pate', updateDate: '20/01/2020', amount: '55,96€'},
-      ]}
+      data={products}
       title={`Productos (3)`}
       onRowClick={_onRowClick}
       options={{
@@ -43,4 +40,4 @@ const ProviderProductTable = () => {
 
 ProviderProductTable.propTypes = {};
 
-export default ProviderProductTable;
+export default memo(ProviderProductTable);

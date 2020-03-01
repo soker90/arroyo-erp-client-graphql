@@ -4,8 +4,9 @@ import Provider from '../components/Provider';
 import {SHOW_EDIT_PROVIDER} from '../modals/types';
 import {showModal} from 'reducers/modal';
 
-const mapStateToProps = ({providers: {provider}}) => ({
+const mapStateToProps = ({providers: {provider}, products: {products}}) => ({
   provider,
+  products,
 });
 
 const mapDispatchToProps = {

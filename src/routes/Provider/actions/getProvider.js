@@ -7,7 +7,7 @@ import {renameTab} from '../../../components/Tabs/modules/tabs';
  * @returns {{type: string}}
  * @private
  */
-const _getPrivderRequest = () => ({type: GET_PROVIDER.REQUEST});
+const _getProviderRequest = () => ({type: GET_PROVIDER.REQUEST});
 
 /**
  * Success action for getPrivder
@@ -15,10 +15,13 @@ const _getPrivderRequest = () => ({type: GET_PROVIDER.REQUEST});
  * @returns {{type: (string|string), providers: {all: *}}}
  * @private
  */
-const _getPrivderSuccess = ({data}) => ({
+const _getProviderSuccess = ({data}) => ({
   type: GET_PROVIDER.SUCCESS,
   providers: {
     provider: data.getProvider,
+  },
+  products: {
+    products: data.getProducts,
   },
 });
 
@@ -28,7 +31,7 @@ const _getPrivderSuccess = ({data}) => ({
  * @returns {{type: string, error: _getInitDataError.props}}
  * @private
  */
-const _getPrivderError = error => ({
+const _getProviderError = error => ({
   type: GET_PROVIDER.FAILURE,
   error,
 });
@@ -39,7 +42,7 @@ const _getPrivderError = error => ({
  * @returns {function(...[*]=)}
  */
 export const getProvider = (id, tabId) => async dispatch => {
-  dispatch(_getPrivderRequest());
+  dispatch(_getProviderRequest());
 
   try {
     const {data} = await axios.post('',
@@ -53,22 +56,26 @@ export const getProvider = (id, tabId) => async dispatch => {
               phone
               email
             }
+            getProducts(provider: "${id}") {
+              _id
+              name
+            }
           }`,
       },
     );
-    console.log(data)
 
     if (data.errors) {
-      dispatch(_getPrivderError(data.errors[0]));
+      dispatch(_getProviderError(data.errors[0]));
       return;
     }
 
-    dispatch(_getPrivderSuccess(data));
+    dispatch(_getProviderSuccess(data));
 
-    if (data?.data?.getProvider?.name)
-      dispatch(renameTab(data.data.getProvider.name, tabId));
+    const name = data?.data?.getProvider?.name;
+    if (name)
+      dispatch(renameTab(name, tabId));
   } catch (error) {
     console.log(error);
-    dispatch(_getPrivderError(error))
+    dispatch(_getProviderSuccess(error))
   }
 };
