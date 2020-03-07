@@ -1,17 +1,8 @@
-import React, {memo, useReducer, useEffect} from 'react';
+import React, {memo, useEffect, useReducer} from 'react';
 import PropTypes from 'prop-types';
-import {
-  Modal,
-  Card,
-  CardHeader,
-  CardContent,
-  CardActions,
-  Grid,
-  Divider,
-  TextField,
-  Button,
-} from '@material-ui/core';
+import {Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, Modal} from '@material-ui/core';
 import {useStyles} from './EditProduct.styles';
+import {DatePickerForm, InputForm} from 'components';
 
 const EditProduct = (
   {
@@ -21,11 +12,16 @@ const EditProduct = (
 
   /**
    * Initial state
-   * @type {{birthday: string, sex: string, name: *, lastname: *}}
+   * @type {{code: (*|string), name: (*|string)}}
    * @private
    */
   const _initialState = {
     name: product?.name || '',
+    code: product?.code || '',
+    ...(product && {
+      updateDate: product?.updateDate || null,
+      amount: product?.amount || 0.0,
+    }),
   };
 
   const [state, setState] = useReducer(
@@ -48,6 +44,16 @@ const EditProduct = (
   };
 
   /**
+   * Handle change date
+   * @param {Date} value
+   * @param {String} name
+   * @private
+   */
+  const _handleChangeDate = (value, name) => {
+    setState({[name]: value});
+  };
+
+  /**
    * Handle submit
    * @private
    */
@@ -57,7 +63,6 @@ const EditProduct = (
     }); */
   };
 
-
   if (!show) {
     return null;
   }
@@ -66,25 +71,33 @@ const EditProduct = (
    * Render input
    * @param {String} label
    * @param {String} name
+   * @param {Object} others
    * @returns {Grid}
    * @private
    */
-  const _renderInput = (label, name) =>
-    <Grid
-      item
-      md={6}
-      xs={12}
-    >
-      <TextField
-        fullWidth
-        label={label}
-        name={name}
-        onChange={_handleChange}
-        value={state[name]}
-        defaultValue={state[name]}
-        variant="outlined"
-      />
-    </Grid>;
+  const _renderInput = (label, name, others = {}) =>
+    <InputForm
+      label={label}
+      name={name}
+      onChange={_handleChange}
+      value={state[name]}
+      variant="outlined"
+      {...others}
+    />;
+
+  /**
+   * Render date picker
+   * @param {string} name
+   * @param {string} label
+   * @return {DatePickerForm}
+   * @private
+   */
+  const _renderDatePicker = (name, label) =>
+    <DatePickerForm
+      value={state[name]}
+      onChange={value => _handleChangeDate(value, name)}
+      label={label}
+    />;
 
   /**
    * Render all buttons
@@ -105,7 +118,6 @@ const EditProduct = (
       </Button>
     </CardActions>;
 
-
   return (
     <Modal
       onClose={close}
@@ -122,7 +134,17 @@ const EditProduct = (
               container
               spacing={3}
             >
+              {_renderInput('Código', 'code')}
               {_renderInput('Nombre', 'name')}
+              {
+                product &&
+                <>
+                  {_renderInput('Precio', 'amount', {
+                    type: 'number',
+                  })}
+                  {_renderDatePicker('updateDate', 'Fecha de actualización')}
+                </>
+              }
             </Grid>
           </CardContent>
           <Divider/>
@@ -138,6 +160,9 @@ EditProduct.propTypes = {
   show: PropTypes.bool,
   product: PropTypes.shape({
     name: PropTypes.string,
+    code: PropTypes.string,
+    amount: PropTypes.number,
+    updateDate: PropTypes.instanceOf(Date),
   }),
 };
 

@@ -3,14 +3,13 @@ import {TableMaterial} from 'components';
 import {useStyles} from './ProviderProductTable.styles';
 import AddIcon from '@material-ui/icons/Add';
 
-const ProviderProductTable = ({products}) => {
+const ProviderProductTable = ({products, showEditProductModal}) => {
   const classes = useStyles();
 
-  const _onRowClick = row => {
-
+  const _onRowClick = (event, row) => {
+    showEditProductModal(row)
   };
 
-  console.log(products)
   return (
     <TableMaterial
       className={classes.table}
@@ -20,7 +19,7 @@ const ProviderProductTable = ({products}) => {
         {title: 'Fecha de actualización', field: 'updateDate'},
       ]}
       data={products}
-      title={`Productos (3)`}
+      title={`Productos (${products.length})`}
       onRowClick={_onRowClick}
       options={{
         pageSize: 5,
@@ -28,10 +27,9 @@ const ProviderProductTable = ({products}) => {
       actions={[
         {
           icon: AddIcon,
-          tooltip: 'Añadir albarán',
+          tooltip: 'Añadir producto',
           isFreeAction: true,
-          onClick: () => {
-          },
+          onClick: showEditProductModal,
         },
       ]}
     />

@@ -10,7 +10,11 @@ import ProviderAlbaranTable from './ProviderAlbaranTable';
 import ProviderInvoiceTable from './ProviderInvoiceTable';
 import ProviderProductTable from './ProviderProductTable';
 
-const Provider = ({provider, match, getProvider, activeTab: {id: tabId}, showEditProviderModal, products}) => {
+const Provider = (
+  {
+    provider, match, getProvider, activeTab: {id: tabId}, showEditProviderModal, products,
+    showEditProductModal,
+  }) => {
   const classes = useStyles();
   useEffect(() => {
     getProvider(match.params.id, tabId);
@@ -29,7 +33,7 @@ const Provider = ({provider, match, getProvider, activeTab: {id: tabId}, showEdi
       </Grid>
       <ProviderInvoiceTable/>
       <ProviderAlbaranTable/>
-      <ProviderProductTable products={products}/>
+      <ProviderProductTable products={products} showEditProductModal={showEditProductModal}/>
     </ContentTab>
   </ContainerTab>;
 };
@@ -39,6 +43,7 @@ Provider.propTypes = {
   provider: PropTypes.object.isRequired,
   showEditProviderModal: PropTypes.func.isRequired,
   products: PropTypes.array.isRequired,
+  showEditProductModal: PropTypes.func.isRequired,
 };
 
 Provider.displayName = 'Provider';
