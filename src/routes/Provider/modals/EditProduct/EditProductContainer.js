@@ -1,12 +1,16 @@
 import {connect} from 'react-redux';
 import EditProvider from './EditProduct';
-// import {saveClientData} from 'routes/Client/modules/actions';
+import {createProduct} from '../../actions';
+
+const mapStateToProps = ({providers: {provider}}) => ({
+  provider: provider._id,
+});
 
 const mapDispatchToProps = {
-  //saveClientData,
+  createProduct,
 };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(EditProvider);

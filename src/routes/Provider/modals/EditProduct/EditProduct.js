@@ -6,7 +6,7 @@ import {DatePickerForm, InputForm} from 'components';
 
 const EditProduct = (
   {
-    show, close, product,
+    show, close, product, createProduct, provider,
   }) => {
   const classes = useStyles();
 
@@ -18,6 +18,7 @@ const EditProduct = (
   const _initialState = {
     name: product?.name || '',
     code: product?.code || '',
+    provider,
     ...(product && {
       updateDate: product?.updateDate || null,
       amount: product?.amount || 0.0,
@@ -31,7 +32,11 @@ const EditProduct = (
 
   useEffect(() => {
     setState(_initialState);
-  }, [product]);
+  }, []);
+
+  if (!show) {
+    return null;
+  }
 
   /**
    * Handle change inputs
@@ -58,14 +63,12 @@ const EditProduct = (
    * @private
    */
   const _handleSubmit = () => {
-    /* saveClientData(state, () => {
-      close();
-    }); */
-  };
+    if (product) {
 
-  if (!show) {
-    return null;
-  }
+    } else {
+      createProduct(state, close);
+    }
+  };
 
   /**
    * Render input

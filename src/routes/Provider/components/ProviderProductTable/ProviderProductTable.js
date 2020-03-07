@@ -6,8 +6,22 @@ import AddIcon from '@material-ui/icons/Add';
 const ProviderProductTable = ({products, showEditProductModal}) => {
   const classes = useStyles();
 
+  /**
+   * Muestra un modal para editar el producto seleccionado
+   * @param {Object} event
+   * @param {Object} row
+   * @private
+   */
   const _onRowClick = (event, row) => {
     showEditProductModal(row)
+  };
+
+  /**
+   * Muestra un modal para añadir un nuevo producto
+   * @private
+   */
+  const _addProduct = () => {
+    showEditProductModal();
   };
 
   return (
@@ -29,7 +43,7 @@ const ProviderProductTable = ({products, showEditProductModal}) => {
           icon: AddIcon,
           tooltip: 'Añadir producto',
           isFreeAction: true,
-          onClick: showEditProductModal,
+          onClick: _addProduct,
         },
       ]}
     />

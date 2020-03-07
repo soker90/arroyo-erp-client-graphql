@@ -21,17 +21,13 @@ const _parseErrorMessage = ({response}) => {
 
   const errors = response?.data.errors;
   return errors ? errors.map(({message}) => message) : [];
-  // let {error, message, exception} = ;
-  //error = error === 'Forbidden' ? deniedAccess : error;
-  //message = exception ? `${message} - ${exception}` : message;
-  // message = message || error;
 };
 
 const notificationsMiddleware = store => next => action => {
   const notification = notifications[action.type];
 
   if (notification) {
-    const notificationParams = notification(action.payload);
+    const notificationParams = notification(action);
 
     if (notificationParams) {
       const notificationAction = addNotification({
