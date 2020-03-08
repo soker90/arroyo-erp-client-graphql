@@ -30,6 +30,7 @@ const ProviderProductTable = ({products, showEditProductModal}) => {
     <TableMaterial
       className={classes.table}
       columns={[
+        {title: 'Código', field: 'code'},
         {title: 'Nombre', field: 'name'},
         {title: 'Precio', field: 'amount'},
         {

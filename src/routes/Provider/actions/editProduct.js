@@ -28,7 +28,7 @@ const _editProductSuccess = ({data}) => ({
 /**
  * Error action for editProduct
  * @param error
- * @returns {{type: string, error: _getInitDataError.props}}
+ * @returns {{type: string, error: _editProductError.props}}
  * @private
  */
 const _editProductError = error => ({
@@ -39,6 +39,8 @@ const _editProductError = error => ({
 /**
  * Edita un producto y devuelve
  * una lista con todos los prouctos incluido
+ * @param {Object} params
+ * @param {Function} callback
  * @returns {function(...[*]=)}
  */
 export const editProduct = ({_id, code, name, provider, updateDate, amount}, callback) => async dispatch => {
@@ -49,7 +51,7 @@ export const editProduct = ({_id, code, name, provider, updateDate, amount}, cal
       {
         query: `
           mutation { 
-            editProduct(id: "${_id}", code: "${code}", name: "${name}", provider: "${provider}", updateDate: "${updateDate}", amount: "${amount}") {
+            editProduct(input: {_id: "${_id}", code: "${code}", name: "${name}", provider: "${provider}"}) {
               message
               products {
                 _id

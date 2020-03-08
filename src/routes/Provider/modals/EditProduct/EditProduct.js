@@ -20,9 +20,7 @@ const EditProduct = (
     code: product?.code || '',
     provider,
     ...(product && {
-      updateDate: product.updateDate ? Number(product.updateDate) : null,
-      amount: product.amount || 0.0,
-      id: product._id,
+      _id: product._id,
     }),
   };
 
@@ -87,20 +85,6 @@ const EditProduct = (
     />;
 
   /**
-   * Render date picker
-   * @param {string} name
-   * @param {string} label
-   * @return {DatePickerForm}
-   * @private
-   */
-  const _renderDatePicker = (name, label) =>
-    <DatePickerForm
-      value={state[name]}
-      onChange={value => _handleChangeDate(value, name)}
-      label={label}
-    />;
-
-  /**
    * Render all buttons
    * @returns {CardActions}
    * @private
@@ -137,15 +121,6 @@ const EditProduct = (
             >
               {_renderInput('Código', 'code')}
               {_renderInput('Nombre', 'name')}
-              {
-                product &&
-                <>
-                  {_renderInput('Precio', 'amount', {
-                    type: 'number',
-                  })}
-                  {_renderDatePicker('updateDate', 'Fecha de actualización')}
-                </>
-              }
             </Grid>
           </CardContent>
           <Divider/>
