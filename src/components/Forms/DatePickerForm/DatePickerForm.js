@@ -32,7 +32,7 @@ const DatePickerForm = ({size, variant, format, children, autoOk, ...rest}) => {
 DatePickerForm.propTypes = {
   className: PropTypes.string,
   label: PropTypes.string.isRequired,
-  value: PropTypes.instanceOf(Date),
+  value: PropTypes.oneOfType([PropTypes.instanceOf(Date), PropTypes.number]),
   onAccept: PropTypes.func,
   onChange: PropTypes.func,
   disableFuture: PropTypes.bool,

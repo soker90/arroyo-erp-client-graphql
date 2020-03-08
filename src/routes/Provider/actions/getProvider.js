@@ -59,6 +59,8 @@ export const getProvider = (id, tabId) => async dispatch => {
             getProducts(provider: "${id}") {
               _id
               name
+              amount
+              updateDate
             }
           }`,
       },

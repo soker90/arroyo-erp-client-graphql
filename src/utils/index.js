@@ -7,3 +7,4 @@ export * from './navigation';
 export * from './booleans';
 export * from './files';
 export * from './arrays';
+export * from './dates';

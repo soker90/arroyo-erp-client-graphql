@@ -1,7 +1,9 @@
 import React, {memo} from 'react';
+import PropTypes from 'prop-types';
 import {TableMaterial} from 'components';
 import {useStyles} from './ProviderProductTable.styles';
 import AddIcon from '@material-ui/icons/Add';
+import {dateShort} from 'utils/dates';
 
 const ProviderProductTable = ({products, showEditProductModal}) => {
   const classes = useStyles();
@@ -30,7 +32,12 @@ const ProviderProductTable = ({products, showEditProductModal}) => {
       columns={[
         {title: 'Nombre', field: 'name'},
         {title: 'Precio', field: 'amount'},
-        {title: 'Fecha de actualización', field: 'updateDate'},
+        {
+          title: 'Fecha de actualización',
+          field: 'updateDate',
+          type: 'datetime',
+          render: ({updateDate}) => dateShort(updateDate),
+        },
       ]}
       data={products}
       title={`Productos (${products.length})`}
@@ -50,6 +57,9 @@ const ProviderProductTable = ({products, showEditProductModal}) => {
   );
 };
 
-ProviderProductTable.propTypes = {};
+ProviderProductTable.propTypes = {
+  products: PropTypes.array.isRequired,
+  showEditProductModal: PropTypes.func.isRequired,
+};
 
 export default memo(ProviderProductTable);

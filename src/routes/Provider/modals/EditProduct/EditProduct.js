@@ -6,7 +6,7 @@ import {DatePickerForm, InputForm} from 'components';
 
 const EditProduct = (
   {
-    show, close, product, createProduct, provider,
+    show, close, product, createProduct, provider, editProduct,
   }) => {
   const classes = useStyles();
 
@@ -20,8 +20,9 @@ const EditProduct = (
     code: product?.code || '',
     provider,
     ...(product && {
-      updateDate: product?.updateDate || null,
-      amount: product?.amount || 0.0,
+      updateDate: product.updateDate ? Number(product.updateDate) : null,
+      amount: product.amount || 0.0,
+      id: product._id,
     }),
   };
 
@@ -32,7 +33,7 @@ const EditProduct = (
 
   useEffect(() => {
     setState(_initialState);
-  }, []);
+  }, [show]);
 
   if (!show) {
     return null;
@@ -63,11 +64,8 @@ const EditProduct = (
    * @private
    */
   const _handleSubmit = () => {
-    if (product) {
-
-    } else {
-      createProduct(state, close);
-    }
+    const submitAction = product ? editProduct : createProduct;
+    submitAction(state, close);
   };
 
   /**
@@ -165,7 +163,7 @@ EditProduct.propTypes = {
     name: PropTypes.string,
     code: PropTypes.string,
     amount: PropTypes.number,
-    updateDate: PropTypes.instanceOf(Date),
+    updateDate: PropTypes.string,
   }),
 };
 

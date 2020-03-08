@@ -6,3 +6,4 @@ export const GET_PROVIDERS = requestActions('GET_PROVIDERS');
 
 // Product
 export const CREATE_PRODUCT = requestActions('CREATE_PRODUCT');
+export const EDIT_PRODUCT = requestActions('EDIT_PRODUCT');
