@@ -12,10 +12,6 @@ const quotes = [
     author: 'Og Mandino',
   },
   {
-    phrase: '¿Y tu con que sueñas?',
-    author: 'Wanna',
-  },
-  {
     phrase: 'Libre no significa Gratis.',
     author: 'Richard Stallman',
   },
