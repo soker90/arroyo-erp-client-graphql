@@ -31,7 +31,6 @@ const ACTION_HANDLERS = {
       message = error.message;
     else {
 
-      //TODO Quitar lodash para esto
       switch (error?.statusCode) {
         case 401:
           message = LOGIN_ERRORS.UNAUTHORIZED;

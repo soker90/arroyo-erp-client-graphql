@@ -1,36 +1,79 @@
-import React, {memo} from 'react';
-import {Row, Button} from 'react-bootstrap';
-import {Container} from '../Container';
-import {WANNA_LOGO} from 'constants/common';
-import history from 'redux/history';
+import React from 'react';
+import {Link as RouterLink} from 'react-router-dom';
+import {makeStyles} from '@material-ui/styles';
+import {
+  Typography,
+  Button,
+  useTheme,
+  useMediaQuery,
+} from '@material-ui/core';
 
-/**
- * Navigate to root path
- * @private
- */
-const _handleClick = () => {
-  history.push('/');
+const useStyles = makeStyles(theme => ({
+  root: {
+    padding: theme.spacing(3),
+    paddingTop: '10vh',
+    display: 'flex',
+    flexDirection: 'column',
+    alignContent: 'center',
+  },
+  imageContainer: {
+    marginTop: theme.spacing(6),
+    display: 'flex',
+    justifyContent: 'center',
+  },
+  image: {
+    maxWidth: '100%',
+    width: 560,
+    maxHeight: 300,
+    height: 'auto',
+  },
+  buttonContainer: {
+    marginTop: theme.spacing(6),
+    display: 'flex',
+    justifyContent: 'center',
+  },
+}));
+
+const Error404 = () => {
+  const classes = useStyles();
+  const theme = useTheme();
+  const mobileDevice = useMediaQuery(theme.breakpoints.down('sm'));
+
+  return (
+    <div
+      className={classes.root}
+    >
+      <Typography
+        align="center"
+        variant={mobileDevice ? 'h4' : 'h1'}
+      >
+        Error 404: La página no existe
+      </Typography>
+      <Typography
+        align="center"
+        variant="subtitle2"
+      >
+        La página que estás buscando no existe.
+      </Typography>
+      <div className={classes.imageContainer}>
+        <img
+          alt="Under development"
+          className={classes.image}
+          src="/images/undraw_page_not_found_su7k.svg"
+        />
+      </div>
+      <div className={classes.buttonContainer}>
+        <Button
+          color="primary"
+          component={RouterLink}
+          to="/"
+          variant="outlined"
+        >
+          Volver
+        </Button>
+      </div>
+    </div>
+  );
 };
 
-const NotFound = memo(() =>
-  <div id="auth-container" className="login">
-    <div className="auth-container-bg"/>
-    <img alt="logo" className="logo-wanna-bottom" src={WANNA_LOGO}/>
-    <Container id="auth-row">
-      <Container id="auth-cell">
-        <Row>
-          <div style={{padding: 0}}>
-            <div className="text-center arroyo-title"/>
-            <div className="jumbotron">
-              <h2>ERROR 404 - Página no encontrada</h2>
-              <p>¡Oh, no! No encontramos la pàgina que estás buscando.</p>
-              <Button onClick={_handleClick} bsStyle="primary">Volver a la página inicial</Button>
-            </div>
-          </div>
-        </Row>
-      </Container>
-    </Container>
-  </div>,
-);
-
-export default NotFound;
+export default Error404;
