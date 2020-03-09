@@ -4,6 +4,7 @@ import Providers from './Providers';
 import ProviderInvoices from './InvoicesProvider';
 import AlbaranesProvider from './AlbaranesProvider';
 import Dashboard from './Dashboard';
+import NewAlbaran from './NewAlbaran';
 
 function createRoute({path, tabName, component}) {
   const tab = {
@@ -41,6 +42,10 @@ const routes = {
   'albaranes/proveedores': {
     tabName: 'Albaranes',
     component: AlbaranesProvider,
+  },
+  'albaranes/nuevo': {
+    tabName: 'Nuevo Albarán',
+    component: NewAlbaran,
   },
   'inicio': {
     tabName: 'Inicio',

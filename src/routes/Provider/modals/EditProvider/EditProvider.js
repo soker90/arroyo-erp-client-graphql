@@ -11,9 +11,6 @@ import {
   TextField,
   Button,
 } from '@material-ui/core';
-import {DatePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
-import DateFnsUtils from '@date-io/date-fns';
-import deLocale from 'date-fns/locale/es';
 import {useStyles} from './EditProvider.styles';
 
 const EditProvider = (
@@ -91,15 +88,6 @@ const EditProvider = (
         variant="outlined"
       />
     </Grid>;
-
-  /**
-   * Handle change picker
-   * @param {String} date
-   * @private
-   */
-  const _handleChangePicker = date => {
-    setState({birthday: date});
-  };
 
   /**
    * Render all buttons

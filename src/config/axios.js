@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {addNotification} from 'reducers/notifications';
+// import {addNotification} from 'reducers/notifications';
 
 const {ARROYO_API_HOST} = process.env;
 

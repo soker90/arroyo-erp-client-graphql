@@ -1,7 +1,6 @@
 import {CREATE_PRODUCT} from 'actions/types';
 
 const setPayload = ({notification}) => {
-  console.log(notification);
   if (!notification?.level) {
     return;
   }

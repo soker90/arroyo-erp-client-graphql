@@ -71,7 +71,7 @@ const ACTION_HANDLERS = {
       const tabs = state.slice();
       const tab = tabs.find(t => t.id === tabId);
       tab.title = name;
-      return tabs;
+      return setActiveTab(tabs, tab.id);;
     }
     return state;
   },

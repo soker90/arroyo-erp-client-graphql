@@ -12,7 +12,6 @@ export const notificationDefaultParams = {
 
 const failureRegexp = /_FAILURE$/;
 const internalError = '500: Error en el servidor';
-const unknownError = 'Error desconocido';
 
 const _parseErrorMessage = ({response}) => {
   const statusCatch = response?.status;

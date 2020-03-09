@@ -2,7 +2,7 @@ import React, {memo, useEffect, useReducer} from 'react';
 import PropTypes from 'prop-types';
 import {Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, Modal} from '@material-ui/core';
 import {useStyles} from './EditProduct.styles';
-import {DatePickerForm, InputForm} from 'components';
+import {InputForm} from 'components';
 
 const EditProduct = (
   {
@@ -44,16 +44,6 @@ const EditProduct = (
    * @private
    */
   const _handleChange = ({target: {name, value}}) => {
-    setState({[name]: value});
-  };
-
-  /**
-   * Handle change date
-   * @param {Date} value
-   * @param {String} name
-   * @private
-   */
-  const _handleChangeDate = (value, name) => {
     setState({[name]: value});
   };
 

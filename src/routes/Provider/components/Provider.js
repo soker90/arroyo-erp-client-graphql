@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Grid} from '@material-ui/core';
 
 import {ContainerTab, ContentTab, DividerTab, HeaderGeneric} from 'components';
-import {useStyles} from './Provider.styles';
+// import {useStyles} from './Provider.styles';
 import ProviderInfo from './ProviderInfo';
 import ProviderStats from './ProviderStats';
 import ProviderAlbaranTable from './ProviderAlbaranTable';
@@ -15,7 +15,7 @@ const Provider = (
     provider, match, getProvider, activeTab: {id: tabId}, showEditProviderModal, products,
     showEditProductModal,
   }) => {
-  const classes = useStyles();
+  // const classes = useStyles();
   useEffect(() => {
     getProvider(match.params.id, tabId);
   }, [tabId, match.params.id]);

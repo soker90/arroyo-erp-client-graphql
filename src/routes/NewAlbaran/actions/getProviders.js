@@ -1,34 +1,34 @@
 import axios from 'axios';
-import {GET_PROVIDERS} from 'actions/types';
+import {GET_PROVIDERS_NEW_PROVIDER} from 'actions/types';
 
 /**
- * Request action for getInitData
+ * Request action for getPrivder
  * @returns {{type: string}}
  * @private
  */
-const _getProvidersRequest = () => ({type: GET_PROVIDERS.REQUEST});
+const _getProvidersRequest = () => ({type: GET_PROVIDERS_NEW_PROVIDER.REQUEST});
 
 /**
- * Success action for getInitData
+ * Success action for getPrivder
  * @param {Object} data
- * @returns {{type: (string|string), providers: {providers: []}}}
+ * @returns {{type: (string|string), providers: {all: *}}}
  * @private
  */
 const _getProvidersSuccess = ({data}) => ({
-  type: GET_PROVIDERS.SUCCESS,
+  type: GET_PROVIDERS_NEW_PROVIDER.SUCCESS,
   providers: {
     providers: data.getProviders,
   },
 });
 
 /**
- * Error action for getInitData
+ * Error action for getPrivder
  * @param error
  * @returns {{type: string, error: _getProvidersError.props}}
  * @private
  */
 const _getProvidersError = error => ({
-  type: GET_PROVIDERS.FAILURE,
+  type: GET_PROVIDERS_NEW_PROVIDER.FAILURE,
   error,
 });
 
@@ -46,8 +46,8 @@ export const getProviders = () => async dispatch => {
         query: `
           query { 
             getProviders {
-              name
               _id
+              name
             }
           }`,
       },
@@ -58,8 +58,9 @@ export const getProviders = () => async dispatch => {
       return;
     }
 
-    dispatch(_getProvidersSuccess(data))
+    dispatch(_getProvidersSuccess(data));
   } catch (error) {
-    dispatch(_getProvidersError(error))
+    console.log(error);
+    dispatch(_getProvidersSuccess(error))
   }
 };
