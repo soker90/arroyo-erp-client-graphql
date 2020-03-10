@@ -1,44 +1,64 @@
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import {Card, CardContent, CardHeader, Grid, Divider} from '@material-ui/core';
-import {DatePickerForm, SelectForm} from 'components/Forms';
+import {InputForm, SelectForm} from 'components/Forms';
+import {useStyles} from './NewAlbaranProductSelect.styles';
 
-const NewAlbaranProductSelect = () => {
+const NewAlbaranProductSelect = ({products, addProduct}) => {
+  const classes = useStyles();
+  const [selectedProduct, setSelectedProduct] = useState(' ');
+  const [quantity, setQuantity] = useState(0);
 
-  return <Card>
-    <CardHeader title='Datos del albarán'/>
+  /**
+   * Handle change select
+   * @param {String} value
+   * @private
+   */
+  const _handleSelect = ({target: {value}}) => {
+    setSelectedProduct(value);
+  };
+
+  /**
+   * Handle event change quantity
+   * @param {String} value
+   * @private
+   */
+  const _handleChangeQuantity = ({target: {value}}) => {
+    setQuantity(value);
+  };
+
+
+  return <Card className={classes.root}>
+    <CardHeader title='Añadir producto al albarán'/>
     <Divider/>
     <CardContent>
       <Grid spacing={3} container>
-        <DatePickerForm label='Fecha' value={date} onChange={_handleChangeDate}/>
         <SelectForm
-          label='Selecciona un proveedor'
-          value={provider}
+          label='Selecciona un producto'
+          value={selectedProduct}
           name='provider'
-          onChange={_handleChange}
+          onChange={_handleSelect}
+          disabled={!products?.length}
         >
-          <option value="manual">--------</option>
-          {providers?.map(item => (
+          <option value="">--------</option>
+          {products?.map(item => (
             <option key={item._id} value={item._id}>
               {item.name}
             </option>
           ))}
         </SelectForm>
+        <InputForm label='Peso / Cantidad' value={quantity} onChange={_handleChangeQuantity}/>
       </Grid>
     </CardContent>
   </Card>
 };
 
 NewAlbaranProductSelect.propTypes = {
-  date: PropTypes.instanceOf(Date),
-  setData: PropTypes.func.isRequired,
+  products: PropTypes.array,
+  addProduct: PropTypes.func.isRequired,
 };
 
-NewAlbaranProductSelect.defaultProps = {
-  date: new Date(),
-};
-
-NewAlbaranProductSelect.displayName = 'NewAlbaranData';
+NewAlbaranProductSelect.displayName = 'NewAlbaranProductSelect';
 
 export default memo(NewAlbaranProductSelect);

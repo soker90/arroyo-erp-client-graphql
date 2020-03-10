@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Card, CardContent, CardHeader, Grid, Divider} from '@material-ui/core';
 import {DatePickerForm, SelectForm} from 'components/Forms';
 
-const NewAlbaranData = ({date, provider, providers, setData}) => {
+const NewAlbaranData = ({products}) => {
   /**
    * Handle change input
    * @param {String} name
@@ -24,25 +24,16 @@ const NewAlbaranData = ({date, provider, providers, setData}) => {
     setData({date: value});
   };
 
+  const _renderRow = () => <>
+
+  </>;
+
   return <Card>
     <CardHeader title='Datos del albarán'/>
     <Divider/>
     <CardContent>
       <Grid spacing={3} container>
-        <DatePickerForm label='Fecha' value={date} onChange={_handleChangeDate}/>
-        <SelectForm
-          label='Selecciona un proveedor'
-          value={provider}
-          name='provider'
-          onChange={_handleChange}
-        >
-          <option value="">--------</option>
-          {providers?.map(item => (
-            <option key={item._id} value={item._id}>
-              {item.name}
-            </option>
-          ))}
-        </SelectForm>
+        {products.map(_renderRow)}
       </Grid>
     </CardContent>
   </Card>

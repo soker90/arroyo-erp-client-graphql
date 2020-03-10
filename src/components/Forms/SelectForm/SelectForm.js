@@ -12,6 +12,9 @@ const SelectForm = memo(({size = 6, children, ...rest}) =>
       fullWidth
       select
       SelectProps={{native: true}}
+      InputLabelProps={{
+        shrink: true,
+      }}
       {...rest}
     >
       {children}

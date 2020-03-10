@@ -1,14 +1,16 @@
 import {connect} from 'react-redux';
-import {getProviders} from '../actions';
+import {getProviders, getProducts} from '../actions';
 import NewAlbaran from '../components/NewAlbaran';
 
-const mapStateToProps = ({providers: {providers, provider}}) => ({
+const mapStateToProps = ({providers: {providers, provider}, products: {products}}) => ({
   provider,
   providers,
+  products,
 });
 
 const mapDispatchToProps = {
   getProviders,
+  getProducts,
 };
 
 export default connect(

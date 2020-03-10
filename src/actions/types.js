@@ -8,3 +8,6 @@ export const GET_PROVIDERS_NEW_PROVIDER = requestActions('GET_PROVIDER_NEW_PROVI
 // Product
 export const CREATE_PRODUCT = requestActions('CREATE_PRODUCT');
 export const EDIT_PRODUCT = requestActions('EDIT_PRODUCT');
+
+// Albarán
+export const GET_PRODUCTS_NEW_ALBARAN = requestActions('GET_PRODUCTS_NEW_ALBARAN');
