@@ -48,6 +48,7 @@ export const getProducts = idProvider => async dispatch => {
             getProducts(provider: "${idProvider}") {
               _id
               name
+              code
             }
           }`,
       },

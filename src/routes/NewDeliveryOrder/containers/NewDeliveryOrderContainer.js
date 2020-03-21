@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 import {getProviders, getProducts} from '../actions';
-import NewAlbaran from '../components/NewAlbaran';
+import NewAlbaran from '../components/NewDeliveryOrder';
 
 const mapStateToProps = ({providers: {providers, provider}, products: {products}}) => ({
   provider,

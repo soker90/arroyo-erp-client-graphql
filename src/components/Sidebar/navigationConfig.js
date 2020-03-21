@@ -78,7 +78,7 @@ const providers = {
 };
 
 
-const albaranes = {
+const deliveryOrder = {
   title: 'Albaranes',
   href: `${BASE_PATH}/albaranes/`,
   icon: PaymentOutlinedIcon,
@@ -101,7 +101,7 @@ export const getConfigSidebar = [
     pages: [
       providers,
       invoice,
-      albaranes,
+      deliveryOrder,
     ],
   },
   {

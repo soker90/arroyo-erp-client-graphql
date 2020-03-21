@@ -1,10 +1,10 @@
 import React, {memo} from 'react';
 import PropTypes from 'prop-types';
+import {Card, CardContent, CardHeader, Divider, Grid} from '@material-ui/core';
 
-import {Card, CardContent, CardHeader, Grid, Divider} from '@material-ui/core';
-import {DatePickerForm, SelectForm} from 'components/Forms';
+import {DatePickerForm, SelectForm} from 'components';
 
-const NewAlbaranData = ({date, provider, providers, setData}) => {
+const NewDeliveryOrderData = ({date, provider, providers, setData}) => {
   /**
    * Handle change input
    * @param {String} name
@@ -48,15 +48,15 @@ const NewAlbaranData = ({date, provider, providers, setData}) => {
   </Card>
 };
 
-NewAlbaranData.propTypes = {
+NewDeliveryOrderData.propTypes = {
   date: PropTypes.instanceOf(Date),
   setData: PropTypes.func.isRequired,
 };
 
-NewAlbaranData.defaultProps = {
+NewDeliveryOrderData.defaultProps = {
   date: new Date(),
 };
 
-NewAlbaranData.displayName = 'NewAlbaranData';
+NewDeliveryOrderData.displayName = 'NewDeliveryOrderData';
 
-export default memo(NewAlbaranData);
+export default memo(NewDeliveryOrderData);

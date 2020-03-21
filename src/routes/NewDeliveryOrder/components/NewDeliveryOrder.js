@@ -2,14 +2,14 @@ import React, {memo, useEffect, useReducer, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import {ContainerTab, ContentTab, DividerTab, HeaderGeneric} from 'components';
-import NewAlbaranData from './NewAlbaranData';
-import NewAlbaranProductSelect from './NewAlbaranProductSelect';
+import NewDeliveryOrderData from './NewDeliveryOrderData';
+import NewDeliveryOrderProducts from './NewDeliveryOrderProducts';
 
-const NewAlbaran = ({provider, providers, getProviders, products, getProducts}) => {
+const NewDeliveryOrder = ({provider, providers, getProviders, products, getProducts}) => {
   const [data, setData] = useReducer(
     (state, newState) => ({...state, ...newState}),
     {});
-  // const [state, setState] = useState(initState);
+  const [selectedProducts, setSelectedProducts] = useState([]);
 
   useEffect(() => {
     getProviders();
@@ -24,17 +24,25 @@ const NewAlbaran = ({provider, providers, getProviders, products, getProducts}) 
       getProducts(data.provider);
   }, [data.provider]);
 
+  /**
+   * Add product to selected product
+   * @private
+   */
+  const _addProduct = () => {
+    setSelectedProducts([...selectedProducts, {product: '', quantity: 0}]);
+  };
+
   return <ContainerTab>
     <HeaderGeneric title='Nuevo albarán' category='Albaranes'/>
     <DividerTab/>
     <ContentTab>
-      <NewAlbaranData {...data} setData={setData} providers={providers}/>
-      <NewAlbaranProductSelect products={products}/>
+      <NewDeliveryOrderData {...data} setData={setData} providers={providers}/>
+      <NewDeliveryOrderProducts products={products} addProduct={_addProduct} selectedProducts={selectedProducts}/>
     </ContentTab>
   </ContainerTab>;
 };
 
-NewAlbaran.propTypes = {
+NewDeliveryOrder.propTypes = {
   provider: PropTypes.object,
   providers: PropTypes.array,
   getProviders: PropTypes.func.isRequired,
@@ -42,6 +50,6 @@ NewAlbaran.propTypes = {
   getProducts: PropTypes.func.isRequired,
 };
 
-NewAlbaran.displayName = 'NewAlbaran';
+NewDeliveryOrder.displayName = 'NewDeliveryOrder';
 
-export default memo(NewAlbaran);
+export default memo(NewDeliveryOrder);
