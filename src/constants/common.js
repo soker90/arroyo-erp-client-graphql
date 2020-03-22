@@ -1,2 +1,2 @@
-export const BASE_PATH = process.env.ARROYO_ROUTER_BASE_PATH;
+export const BASE_PATH = process.env.REACT_APP_ROUTER_BASE_PATH;
 

@@ -6,7 +6,7 @@ import LoginRoute from './Login';
 import arroyoRoutes from './routes';
 import NotFound from 'components/NotFound';
 
-const BASE_PATH = process.env.ARROYO_ROUTER_BASE_PATH;
+const BASE_PATH = process.env.REACT_APP_ROUTER_BASE_PATH;
 
 const routes = arroyoRoutes.map(({path, component, ...rest}) => {
   return (

@@ -9,7 +9,7 @@ import FaceOutlinedIcon from '@material-ui/icons/FaceOutlined';
 import AddIcon from '@material-ui/icons/Add';
 
 
-const BASE_PATH = process.env.ARROYO_ROUTER_BASE_PATH;
+const BASE_PATH = process.env.REACT_APP_ROUTER_BASE_PATH;
 
 // label: () => <Label color={colors.green[500]}>New</Label>,
 

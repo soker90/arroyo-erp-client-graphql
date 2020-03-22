@@ -9,7 +9,6 @@ export {default as Markdown} from './Markdown';
 export {default as Alert} from './Alert';
 export * from './Modals';
 export * from './Forms';
-export {default as TextEditor} from './TextEditor';
 export {default as ContainerTab} from './ContainerTab';
 export {default as ContentTab} from './ContentTab';
 export {default as DividerTab} from './DividerTab';

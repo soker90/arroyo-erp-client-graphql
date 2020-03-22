@@ -1,12 +1,12 @@
 import axios from 'axios';
 // import {addNotification} from 'reducers/notifications';
 
-const {ARROYO_API_HOST} = process.env;
+const {REACT_APP_API_HOST} = process.env;
 
 // ========================================================
 // Axios config
 // ========================================================
-axios.defaults.baseURL = ARROYO_API_HOST;
+axios.defaults.baseURL = REACT_APP_API_HOST;
 axios.defaults.withCredentials = true;
 export default dispatch => {
   axios.interceptors.response.use(

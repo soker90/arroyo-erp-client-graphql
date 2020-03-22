@@ -13,7 +13,7 @@ const App = ({store, routes}) =>
   <Provider store={store}>
     <ThemeProvider theme={theme}>
       <LoadingBar
-        style={{zIndex: 999999, backgroundColor: '#cf4d2e', height: '5px'}}
+        style={{zIndex: 999999, backgroundColor: theme.palette.primary.light, height: '5px'}}
       />
       <Notification/>
       <ConnectedRouter history={history}>{routes}</ConnectedRouter>

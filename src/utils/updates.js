@@ -1,6 +1,6 @@
 import {addNotification} from 'reducers/notifications';
 
-const version = process.env.APP_VERSION;
+const version = process.env.REACT_APP_VERSION;
 
 export function newVersionAvailable(dispatch) {
   dispatch(

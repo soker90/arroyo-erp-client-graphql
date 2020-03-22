@@ -1,13 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import disableScroll from 'disable-scroll';
 
 import {newVersionAvailable, swReady} from 'utils/updates';
 import * as serviceWorker from './serviceWorker';
 import createRoutes from './routes/base';
 import configureStore from './redux/create-store';
 import App from './components/main/App';
-
 //import './styles/core.scss';
 //import 'react-quill/dist/quill.snow.css';
 //import 'react-datepicker/dist/react-datepicker.css';
@@ -17,33 +15,15 @@ import App from './components/main/App';
 // import './mixins/prismjs';
 import './assets/scss/index.scss';
 
-const {APP_VERSION, ARROYO_ENV_NAME} = process.env;
-
-// ========================================================
-// Prevent scroll
-// ========================================================
-disableScroll.on();
-
-// ========================================================
-// Remove loading app after 1/2 sec
-// ========================================================
-function removeLoading() {
-  const elem = document.getElementById('app-loading');
-  elem.className = 'app-loading hide-loading';
-
-  setTimeout(() => {
-    elem.parentNode.removeChild(elem);
-    disableScroll.off();
-  }, 500);
-}
+const {REACT_APP_VERSION, REACT_APP_ENV_NAME} = process.env;
 
 // ========================================================
 // Auto Update window title (navigator)
 // ========================================================
 function setWindowTitle() {
-  const title = ['ARROYO', APP_VERSION];
-  if (ARROYO_ENV_NAME) {
-    title.unshift(`[${ARROYO_ENV_NAME}]`);
+  const title = ['ARROYO', REACT_APP_VERSION];
+  if (REACT_APP_ENV_NAME) {
+    title.unshift(`[${REACT_APP_ENV_NAME}]`);
   }
 
   document.getElementsByTagName('title')[0].innerHTML = title.join(' ');
@@ -61,8 +41,7 @@ const appDOM = document.getElementById('root');
 // ========================================================
 function render(store, appDOM) {
   setWindowTitle();
-  setTimeout(removeLoading, 1000);
-  ReactDOM.render(<App store={store} routes={routes} />, appDOM);
+  ReactDOM.render(<App store={store} routes={routes}/>, appDOM);
 }
 
 render(store, appDOM);
