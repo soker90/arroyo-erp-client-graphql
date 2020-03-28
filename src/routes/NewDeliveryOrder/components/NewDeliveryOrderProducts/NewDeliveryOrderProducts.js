@@ -8,25 +8,12 @@ import AddIcon from '@material-ui/icons/Add';
 
 const NewDeliveryOrderProducts = ({products, selectedProducts, addProduct, updateProduct}) => {
   const classes = useStyles();
-  /**
-   * Handle change input
-   * @param {String} name
-   * @param {String} value
-   * @private
-   */
-  const _handleChange = ({target: {name, value}}) => {
-    //setData({[name]: value});
-  };
 
   /**
-   * Handle change date
-   * @param {Date} value
+   * Render button add product
+   * @return {Tooltip}
    * @private
    */
-  const _handleChangeDate = value => {
-    // setData({date: value});
-  };
-
   const _renderAddButton = () =>
     <Tooltip title="Añadir producto">
       <IconButton size="small" className={classes.button} onClick={addProduct}>
@@ -34,6 +21,13 @@ const NewDeliveryOrderProducts = ({products, selectedProducts, addProduct, updat
       </IconButton>
     </Tooltip>;
 
+  /**
+   * Render row of product
+   * @param {Object} data
+   * @param {number} index
+   * @return {NewDeliveryOrderProductSelect}
+   * @private
+   */
   const _renderRow = (data, index) => <NewDeliveryOrderProductSelect
     products={products} updateProduct={updateProduct}
     data={data} index={index}/>;

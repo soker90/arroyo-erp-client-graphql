@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import {ContainerTab, ContentTab, DividerTab, HeaderGeneric} from 'components';
 import NewDeliveryOrderData from './NewDeliveryOrderData';
 import NewDeliveryOrderProducts from './NewDeliveryOrderProducts';
+import {Button} from '@material-ui/core';
 
 const NewDeliveryOrder = ({provider, providers, getProviders, products, getProducts}) => {
   const [data, setData] = useReducer(
@@ -43,6 +44,10 @@ const NewDeliveryOrder = ({provider, providers, getProviders, products, getProdu
     setSelectedProducts(_selectedProducts);
   };
 
+  const _handleClickSave = () => {
+
+  };
+
   return <ContainerTab>
     <HeaderGeneric title='Nuevo albarán' category='Albaranes'/>
     <DividerTab/>
@@ -51,6 +56,13 @@ const NewDeliveryOrder = ({provider, providers, getProviders, products, getProdu
       <NewDeliveryOrderProducts
         products={products} addProduct={_addProduct} selectedProducts={selectedProducts}
         updateProduct={_updateProduct}/>
+      <Button
+        color="primary"
+        variant="outlined"
+        onClick={_handleClickSave}
+      >
+        Guardar
+      </Button>
     </ContentTab>
   </ContainerTab>;
 };
