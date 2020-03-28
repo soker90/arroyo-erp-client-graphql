@@ -29,7 +29,11 @@ const NewDeliveryOrderData = ({date, provider, providers, setData}) => {
     <Divider/>
     <CardContent>
       <Grid spacing={3} container>
-        <DatePickerForm label='Fecha' value={date} onChange={_handleChangeDate}/>
+        <DatePickerForm
+          label='Fecha'
+          value={date}
+          onChange={_handleChangeDate}
+        />
         <SelectForm
           label='Selecciona un proveedor'
           value={provider}
@@ -51,10 +55,6 @@ const NewDeliveryOrderData = ({date, provider, providers, setData}) => {
 NewDeliveryOrderData.propTypes = {
   date: PropTypes.instanceOf(Date),
   setData: PropTypes.func.isRequired,
-};
-
-NewDeliveryOrderData.defaultProps = {
-  date: new Date(),
 };
 
 NewDeliveryOrderData.displayName = 'NewDeliveryOrderData';

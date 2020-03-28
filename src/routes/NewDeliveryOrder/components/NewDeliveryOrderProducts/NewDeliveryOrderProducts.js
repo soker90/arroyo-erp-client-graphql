@@ -6,7 +6,7 @@ import NewDeliveryOrderProductSelect from '../NewDeliveryOrderProductSelect';
 import {useStyles} from './NewDeliveryOrderProducts.styles';
 import AddIcon from '@material-ui/icons/Add';
 
-const NewDeliveryOrderProducts = ({products, selectedProducts, addProduct}) => {
+const NewDeliveryOrderProducts = ({products, selectedProducts, addProduct, updateProduct}) => {
   const classes = useStyles();
   /**
    * Handle change input
@@ -34,7 +34,9 @@ const NewDeliveryOrderProducts = ({products, selectedProducts, addProduct}) => {
       </IconButton>
     </Tooltip>;
 
-  const _renderRow = () => <NewDeliveryOrderProductSelect products={products}/>;
+  const _renderRow = (data, index) => <NewDeliveryOrderProductSelect
+    products={products} updateProduct={updateProduct}
+    data={data} index={index}/>;
 
   return <Card className={classes.root}>
     <CardHeader title='Productos' action={_renderAddButton()}/>
@@ -50,6 +52,7 @@ NewDeliveryOrderProducts.propTypes = {
   setData: PropTypes.func.isRequired,
   selectedProducts: PropTypes.array.isRequired,
   addProduct: PropTypes.func.isRequired,
+  updateProduct: PropTypes.func.isRequired,
 };
 
 NewDeliveryOrderProducts.defaultProps = {

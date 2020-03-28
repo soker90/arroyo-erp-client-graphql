@@ -5,11 +5,12 @@ import {Grid} from '@material-ui/core';
 import {InputForm, SelectForm} from 'components/Forms';
 import {useStyles} from '../NewDeliveryOrderProducts/NewDeliveryOrderProducts.styles';
 
-const NewDeliveryOrderProductSelect = ({products, addProduct}) => {
+const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data}) => {
   const classes = useStyles();
-  const [product, setProduct] = useState('');
-  const [quantity, setQuantity] = useState(0);
-  const [code, setCode] = useState('');
+  // TOdo quitarlos
+  const [product, setProduct] = useState(data.product);
+  const [quantity, setQuantity] = useState(data.quantity);
+  const [code, setCode] = useState(data.code);
 
   /**
    * Handle change select
@@ -18,6 +19,7 @@ const NewDeliveryOrderProductSelect = ({products, addProduct}) => {
    */
   const _handleSelect = ({target: {value}}) => {
     setProduct(value);
+    _updateProduct();
   };
 
   /**
@@ -29,6 +31,11 @@ const NewDeliveryOrderProductSelect = ({products, addProduct}) => {
     const selected = products.find(product => product.code === value);
     setCode(value);
     setProduct(selected?._id || '');
+    _updateProduct();
+  };
+
+  const _updateProduct = () => {
+    updateProduct(index, {product, quantity, code});
   };
 
   /**

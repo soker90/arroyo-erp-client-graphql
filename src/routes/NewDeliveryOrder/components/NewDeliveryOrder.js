@@ -8,15 +8,14 @@ import NewDeliveryOrderProducts from './NewDeliveryOrderProducts';
 const NewDeliveryOrder = ({provider, providers, getProviders, products, getProducts}) => {
   const [data, setData] = useReducer(
     (state, newState) => ({...state, ...newState}),
-    {});
+    {
+      date: null,
+      provider: provider?._id || '',
+    });
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   useEffect(() => {
     getProviders();
-    setData({
-      date: null,
-      provider: provider?._id || '',
-    });
   }, []);
 
   useEffect(() => {
@@ -32,12 +31,26 @@ const NewDeliveryOrder = ({provider, providers, getProviders, products, getProdu
     setSelectedProducts([...selectedProducts, {product: '', quantity: 0}]);
   };
 
+  /**
+   * Actualiza los datos del producto seleccionado en es estado
+   * @param {number} index
+   * @param {object} dataProduct
+   * @private
+   */
+  const _updateProduct = (index, dataProduct) => {
+    const _selectedProducts = selectedProducts.slice();
+    _selectedProducts[index] = dataProduct;
+    setSelectedProducts(_selectedProducts);
+  };
+
   return <ContainerTab>
     <HeaderGeneric title='Nuevo albarán' category='Albaranes'/>
     <DividerTab/>
     <ContentTab>
-      <NewDeliveryOrderData {...data} setData={setData} providers={providers}/>
-      <NewDeliveryOrderProducts products={products} addProduct={_addProduct} selectedProducts={selectedProducts}/>
+      <NewDeliveryOrderData setData={setData} providers={providers} {...data} />
+      <NewDeliveryOrderProducts
+        products={products} addProduct={_addProduct} selectedProducts={selectedProducts}
+        updateProduct={_updateProduct}/>
     </ContentTab>
   </ContainerTab>;
 };
