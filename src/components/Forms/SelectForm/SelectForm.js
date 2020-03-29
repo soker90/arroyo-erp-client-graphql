@@ -30,7 +30,7 @@ SelectForm.propTypes = {
   variant: PropTypes.string,
   onChange: PropTypes.func,
   disabled: PropTypes.bool,
-  children: PropTypes.object.isRequired,
+  children: PropTypes.oneOfType([PropTypes.object, PropTypes.array]).isRequired,
 };
 
 SelectForm.displayName = 'SelectForm';

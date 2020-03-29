@@ -11,7 +11,7 @@ export const checkTokenAlive = () => dispatch => {
   const token = localStorage.getItem(ARROYO_TOKEN);
   if (token) {
     const tokenDecode = decodeToken(token);
-    const currentTime = Date.now() / 1000;
+    const currentTime = new Date().getTime() / 1000;
 
     if (currentTime < tokenDecode.exp) {
       setAuthorizationToken(token, dispatch);

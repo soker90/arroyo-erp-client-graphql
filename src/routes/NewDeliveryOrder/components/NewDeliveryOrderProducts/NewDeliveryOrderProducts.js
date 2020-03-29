@@ -6,7 +6,7 @@ import NewDeliveryOrderProductSelect from '../NewDeliveryOrderProductSelect';
 import {useStyles} from './NewDeliveryOrderProducts.styles';
 import AddIcon from '@material-ui/icons/Add';
 
-const NewDeliveryOrderProducts = ({products, selectedProducts, addProduct, updateProduct}) => {
+const NewDeliveryOrderProducts = ({products, selectedProducts, addProduct, updateProduct, deleteProduct}) => {
   const classes = useStyles();
 
   /**
@@ -29,7 +29,9 @@ const NewDeliveryOrderProducts = ({products, selectedProducts, addProduct, updat
    * @private
    */
   const _renderRow = (data, index) => <NewDeliveryOrderProductSelect
+    key={index}
     products={products} updateProduct={updateProduct}
+    deleteProduct={deleteProduct}
     data={data} index={index}/>;
 
   return <Card className={classes.root}>
@@ -42,11 +44,11 @@ const NewDeliveryOrderProducts = ({products, selectedProducts, addProduct, updat
 };
 
 NewDeliveryOrderProducts.propTypes = {
-  date: PropTypes.instanceOf(Date),
-  setData: PropTypes.func.isRequired,
+  products: PropTypes.array.isRequired,
   selectedProducts: PropTypes.array.isRequired,
   addProduct: PropTypes.func.isRequired,
   updateProduct: PropTypes.func.isRequired,
+  deleteProduct: PropTypes.func.isRequired,
 };
 
 NewDeliveryOrderProducts.defaultProps = {

@@ -14,7 +14,7 @@ import {useStyles} from './ModalBase.styles';
 
 
 const ModalBase = memo(
-  ({show, close, title, children, action}) => {
+  ({show, close, title, children, action, labelAction}) => {
     const classes = useStyles();
 
     if (!show) {
@@ -32,7 +32,7 @@ const ModalBase = memo(
           {action ? 'Cancelar' : 'Cerrar'}
         </Button>
         {action && <Button onClick={action} className={classes.buttonAccept}>
-          Aceptar
+          {labelAction || 'Aceptar'}
         </Button>}
       </CardActions>;
 
@@ -71,6 +71,7 @@ ModalBase.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
   action: PropTypes.func,
+  labelAction: PropTypes.string,
 };
 
 ModalBase.displayName = 'ModalBase';

@@ -4,7 +4,8 @@ export const useStyles = makeStyles(theme => ({
   root: {
     marginTop: theme.spacing(3),
   },
-  button: {
-    marginLeft: theme.spacing(1),
+  buttons: {
+    marginTop: theme.spacing(2),
+    textAlign: 'right',
   },
 }));

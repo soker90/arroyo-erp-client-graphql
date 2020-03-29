@@ -6,7 +6,7 @@ import NewDeliveryOrderData from './NewDeliveryOrderData';
 import NewDeliveryOrderProducts from './NewDeliveryOrderProducts';
 import {Button} from '@material-ui/core';
 
-const NewDeliveryOrder = ({provider, providers, getProviders, products, getProducts}) => {
+const NewDeliveryOrder = ({provider, providers, getProviders, products, getProducts, showDeleteProductModal}) => {
   const [data, setData] = useReducer(
     (state, newState) => ({...state, ...newState}),
     {
@@ -29,7 +29,7 @@ const NewDeliveryOrder = ({provider, providers, getProviders, products, getProdu
    * @private
    */
   const _addProduct = () => {
-    setSelectedProducts([...selectedProducts, {product: '', quantity: 0}]);
+    setSelectedProducts([...selectedProducts, {product: '', quantity: 0, code: ''}]);
   };
 
   /**
@@ -44,6 +44,21 @@ const NewDeliveryOrder = ({provider, providers, getProviders, products, getProdu
     setSelectedProducts(_selectedProducts);
   };
 
+  /**
+   * Delete product
+   * @param {number} index
+   * @private
+   */
+  const _deleteProduct = index => {
+    const _newProducts = selectedProducts.filter((i, idx) => idx !== index);
+    setSelectedProducts(_newProducts);
+  };
+
+  const _showModalDelete = (id, index) => {
+    showDeleteProductModal(id, _deleteProduct.bind(this, index));
+  };
+
+
   const _handleClickSave = () => {
 
   };
@@ -54,7 +69,9 @@ const NewDeliveryOrder = ({provider, providers, getProviders, products, getProdu
     <ContentTab>
       <NewDeliveryOrderData setData={setData} providers={providers} {...data} />
       <NewDeliveryOrderProducts
-        products={products} addProduct={_addProduct} selectedProducts={selectedProducts}
+        products={products} addProduct={_addProduct}
+        selectedProducts={selectedProducts}
+        deleteProduct={_deleteProduct}
         updateProduct={_updateProduct}/>
       <Button
         color="primary"
@@ -73,6 +90,7 @@ NewDeliveryOrder.propTypes = {
   getProviders: PropTypes.func.isRequired,
   products: PropTypes.array,
   getProducts: PropTypes.func.isRequired,
+  showDeleteProductModal: PropTypes.func.isRequired,
 };
 
 NewDeliveryOrder.displayName = 'NewDeliveryOrder';

@@ -5,12 +5,12 @@ import Auth from 'layouts/Auth';
 import LoginForm from './LoginForm';
 import {useStyles} from './Login.styles';
 
-const LoginView = ({login, loginError, isLoading, checkTokenAlive}) => {
+const LoginView = ({login, loginError, isLoading, checkTokenAlive, location}) => {
   const classes = useStyles();
 
   useEffect(() => {
     checkTokenAlive();
-  }, [checkTokenAlive]);
+  }, [location.pathname]);
 
   /**
    * Render loading bar

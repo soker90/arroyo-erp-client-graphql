@@ -1,16 +1,13 @@
-import React, {memo, useState} from 'react';
+import React, {memo} from 'react';
 import PropTypes from 'prop-types';
 
-import {Grid} from '@material-ui/core';
+import {Grid, IconButton, Tooltip} from '@material-ui/core';
 import {InputForm, SelectForm} from 'components/Forms';
 import {useStyles} from '../NewDeliveryOrderProducts/NewDeliveryOrderProducts.styles';
+import DeleteIcon from '@material-ui/icons/Delete';
 
-const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data}) => {
+const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data: {product, quantity, code}, deleteProduct}) => {
   const classes = useStyles();
-  // TOdo quitarlos
-  const [product, setProduct] = useState(data.product);
-  const [quantity, setQuantity] = useState(data.quantity);
-  const [code, setCode] = useState(data.code);
 
   /**
    * Handle change select
@@ -18,8 +15,8 @@ const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data}) =
    * @private
    */
   const _handleSelect = ({target: {value}}) => {
-    setProduct(value);
-    _updateProduct();
+    const selected = products.find(product => product._id === value);
+    updateProduct(index, {product: value, quantity, code: selected?.code || ''});
   };
 
   /**
@@ -29,13 +26,7 @@ const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data}) =
    */
   const _handleCode = ({target: {value}}) => {
     const selected = products.find(product => product.code === value);
-    setCode(value);
-    setProduct(selected?._id || '');
-    _updateProduct();
-  };
-
-  const _updateProduct = () => {
-    updateProduct(index, {product, quantity, code});
+    updateProduct(index, {product: selected?._id || '', code: value, quantity});
   };
 
   /**
@@ -44,11 +35,33 @@ const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data}) =
    * @private
    */
   const _handleChangeQuantity = ({target: {value}}) => {
-    setQuantity(value);
+    updateProduct(index, {product, code, quantity: value});
   };
 
+  /**
+   * Handle event click
+   * Remove product
+   * @private
+   */
+  const _handleClickDelete = () => {
+    deleteProduct(index);
+  };
+
+  const _renderDeleteButton = () =>
+    <Grid item xs={1} className={classes.buttons}>
+      <Tooltip title='Eliminar'>
+        <IconButton size="small" onClick={_handleClickDelete}>
+          <DeleteIcon/>
+        </IconButton>
+      </Tooltip>
+    </Grid>;
+
   return <Grid spacing={3} container>
-    <InputForm label='Código' value={code} onChange={_handleCode} size={4}/>
+    <InputForm
+      label='Código' value={code} onChange={_handleCode} size={4}
+      InputLabelProps={{
+        shrink: true,
+      }}/>
     <SelectForm
       label='Selecciona un producto'
       value={product}
@@ -58,19 +71,23 @@ const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data}) =
       size={4}
     >
       <option value="">--------</option>
-      {products?.map(item => (
-        <option key={item.code} value={item._id}>
+      {products?.map((item, idx) => (
+        <option key={idx} value={item._id}>
           {item.name}
         </option>
       ))}
     </SelectForm>
-    <InputForm label='Peso / Cantidad' value={quantity} onChange={_handleChangeQuantity} size={4}/>
+    <InputForm label='Peso / Cantidad' value={quantity} onChange={_handleChangeQuantity} size={3}/>
+    {_renderDeleteButton()}
   </Grid>
 };
 
 NewDeliveryOrderProductSelect.propTypes = {
   products: PropTypes.array,
-  addProduct: PropTypes.func.isRequired,
+  deleteProduct: PropTypes.func.isRequired,
+  updateProduct: PropTypes.func.isRequired,
+  data: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired,
 };
 
 NewDeliveryOrderProductSelect.displayName = 'NewDeliveryOrderProductSelect';

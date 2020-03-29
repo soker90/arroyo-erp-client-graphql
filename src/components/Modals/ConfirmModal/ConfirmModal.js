@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Grid, Typography} from '@material-ui/core';
 import {ModalBase} from '../index';
 
-const ConfirmModal = memo(props => {
+const ConfirmModal = props => {
   return <ModalBase {...props}>
     <Grid
       item
@@ -15,7 +15,7 @@ const ConfirmModal = memo(props => {
       </Typography>
     </Grid>
   </ModalBase>;
-});
+};
 
 ConfirmModal.propTypes = {
   close: PropTypes.func,
@@ -27,4 +27,4 @@ ConfirmModal.propTypes = {
 
 ConfirmModal.displayName = 'ConfirmModal';
 
-export default ConfirmModal;
+export default memo(ConfirmModal);
