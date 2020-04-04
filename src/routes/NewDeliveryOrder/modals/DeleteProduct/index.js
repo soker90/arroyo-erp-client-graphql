@@ -1,1 +1,1 @@
-export {default} from 'routes/NewDeliveryOrder/modals/DeleteProduct';
+export {default} from 'routes/NewDeliveryOrder/modals/DeleteProduct/DeleteProduct';

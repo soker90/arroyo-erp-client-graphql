@@ -254,3 +254,7 @@ export const GET_PERMISSION_LIST = requestActions(
 );
 
 export const DOWNLOAD_LOTS = requestActions('lots/DOWNLOAD_LOTS');
+
+// History Tab
+export const ADD_HISTORY_TAB = 'ADD_HISTORY_TAB';
+export const REMOVE_HISTORY_TAB = 'REMOVE_HISTORY_TAB';

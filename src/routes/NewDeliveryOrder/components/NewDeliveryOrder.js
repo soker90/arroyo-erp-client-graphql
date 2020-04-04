@@ -1,10 +1,11 @@
-import React, {memo, useEffect, useReducer, useState} from 'react';
+import React, {Fragment, memo, useEffect, useReducer, useState} from 'react';
 import PropTypes from 'prop-types';
+import {Button} from '@material-ui/core';
 
 import {ContainerTab, ContentTab, DividerTab, HeaderGeneric} from 'components';
 import NewDeliveryOrderData from './NewDeliveryOrderData';
 import NewDeliveryOrderProducts from './NewDeliveryOrderProducts';
-import {Button} from '@material-ui/core';
+import {useStyles} from './NewDeliveryOrder.styles';
 
 const NewDeliveryOrder = ({provider, providers, getProviders, products, getProducts, showDeleteProductModal}) => {
   const [data, setData] = useReducer(
@@ -24,6 +25,7 @@ const NewDeliveryOrder = ({provider, providers, getProviders, products, getProdu
       getProducts(data.provider);
   }, [data.provider]);
 
+  const classes = useStyles();
   /**
    * Add product to selected product
    * @private
@@ -54,10 +56,14 @@ const NewDeliveryOrder = ({provider, providers, getProviders, products, getProdu
     setSelectedProducts(_newProducts);
   };
 
-  const _showModalDelete = (id, index) => {
-    showDeleteProductModal(id, _deleteProduct.bind(this, index));
+  /**
+   * Show modal to delete product
+   * @param {number} index
+   * @private
+   */
+  const _showModalDelete = index => {
+    showDeleteProductModal(_deleteProduct, index);
   };
-
 
   const _handleClickSave = () => {
 
@@ -68,18 +74,24 @@ const NewDeliveryOrder = ({provider, providers, getProviders, products, getProdu
     <DividerTab/>
     <ContentTab>
       <NewDeliveryOrderData setData={setData} providers={providers} {...data} />
-      <NewDeliveryOrderProducts
-        products={products} addProduct={_addProduct}
-        selectedProducts={selectedProducts}
-        deleteProduct={_deleteProduct}
-        updateProduct={_updateProduct}/>
-      <Button
-        color="primary"
-        variant="outlined"
-        onClick={_handleClickSave}
-      >
-        Guardar
-      </Button>
+      {data.provider &&
+      <Fragment>
+        <NewDeliveryOrderProducts
+          products={products} addProduct={_addProduct}
+          selectedProducts={selectedProducts}
+          deleteProduct={_showModalDelete}
+          updateProduct={_updateProduct}/>
+        <div className={classes.buttons}>
+          <Button
+            color="primary"
+            variant="contained"
+            onClick={_handleClickSave}
+          >
+            Guardar
+          </Button>
+        </div>
+      </Fragment>
+      }
     </ContentTab>
   </ContainerTab>;
 };

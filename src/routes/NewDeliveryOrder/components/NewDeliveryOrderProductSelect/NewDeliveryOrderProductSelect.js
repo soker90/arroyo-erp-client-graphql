@@ -1,7 +1,7 @@
 import React, {memo} from 'react';
 import PropTypes from 'prop-types';
-
 import {Grid, IconButton, Tooltip} from '@material-ui/core';
+
 import {InputForm, SelectForm} from 'components/Forms';
 import {useStyles} from '../NewDeliveryOrderProducts/NewDeliveryOrderProducts.styles';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -47,6 +47,11 @@ const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data: {p
     deleteProduct(index);
   };
 
+  /**
+   * Render delete product button
+   * @returns {Grid}
+   * @private
+   */
   const _renderDeleteButton = () =>
     <Grid item xs={1} className={classes.buttons}>
       <Tooltip title='Eliminar'>

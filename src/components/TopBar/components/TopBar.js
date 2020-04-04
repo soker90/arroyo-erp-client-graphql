@@ -7,24 +7,23 @@ import {
   Button,
   Toolbar,
   Input,
+  LinearProgress,
+  IconButton,
 } from '@material-ui/core';
 import InputIcon from '@material-ui/icons/Input';
 import SearchIcon from '@material-ui/icons/Search';
-// import NotificationsIcon from '@material-ui/icons/NotificationsOutlined';
+import HistoryIcon from '@material-ui/icons/History';
 import {useStyles} from './TopBar.styles';
-import LinearProgress from '@material-ui/core/LinearProgress';
 import Logo from 'assets/logo.png';
-// import Badge from '@material-ui/core/Badge';
-// import NotificationsPopover from '../NotificationsPopover';
+import RecentTabsBar from 'components/RecentTabsBar';
+
 const Tabs = lazy(() => import('components/Tabs'));
 
 const TopBar = ({className, logout, publicRoute, ...rest}) => {
   const classes = useStyles();
   const searchRef = useRef(null);
-  // const notificationsRef = useRef(null);
   const [searchValue, setSearchValue] = useState('');
-  // const [notifications, setNotifications] = useState([]);
-  // const [openNotifications, setOpenNotifications] = useState(false);
+  const [openTabsBar, setOpenTabsBar] = useState(false);
 
   /**
    * Handle of press logout button
@@ -33,19 +32,38 @@ const TopBar = ({className, logout, publicRoute, ...rest}) => {
     logout();
   };
 
-  /* const handleNotificationsOpen = () => {
-    setOpenNotifications(true);
+  /**
+   * Handle click for open history tabs
+   * @private
+   */
+  const _handleTabsBarOpen = () => {
+    setOpenTabsBar(true);
   };
 
-  const handleNotificationsClose = () => {
-    setOpenNotifications(false);
-  }; */
+  /**
+   * Handle click for close history tabs
+   * @private
+   */
+  const handleTabsBarClose = () => {
+    setOpenTabsBar(false);
+  };
 
   /**
    * Handle changle of search box
    */
-  const handleSearchChange = event => {
-    setSearchValue(event.target.value);
+  const handleSearchChange = ({target: {value}}) => {
+    setSearchValue(value);
+  };
+
+  /**
+   * Handle for press Enter button in search box
+   * @param {Object} ev
+   * @private
+   */
+  const _handlePressEnterSearch = ev => {
+    if (ev.key === 'Enter') {
+      // searchClients({dni: searchValue})
+    }
   };
 
   /**
@@ -61,6 +79,7 @@ const TopBar = ({className, logout, publicRoute, ...rest}) => {
         className={classes.searchInput}
         disableUnderline
         onChange={handleSearchChange}
+        onKeyPress={_handlePressEnterSearch}
         placeholder="Buscar por DNI"
         value={searchValue}
       />
@@ -90,20 +109,13 @@ const TopBar = ({className, logout, publicRoute, ...rest}) => {
       <Tabs/>
       <div className={classes.flexGrow}/>
       {renderSearchBox()}
-      {/*<IconButton
-            className={classes.notificationsButton}
-            color="inherit"
-            onClick={handleNotificationsOpen}
-            ref={notificationsRef}
-          >
-            <Badge
-              badgeContent={notifications.length}
-              classes={{badge: classes.notificationsBadge}}
-              variant="dot"
-            >
-              <NotificationsIcon/>
-            </Badge>
-          </IconButton>*/}
+      <IconButton
+        className={classes.tabsButton}
+        color="inherit"
+        onClick={_handleTabsBarOpen}
+      >
+        <HistoryIcon/>
+      </IconButton>
       {renderLogout()}
     </Suspense>;
 
@@ -124,12 +136,10 @@ const TopBar = ({className, logout, publicRoute, ...rest}) => {
         </RouterLink>
         {renderTopBarPrivate()}
       </Toolbar>
-      {/*<NotificationsPopover
-        anchorEl={notificationsRef.current}
-        notifications={notifications}
-        onClose={handleNotificationsClose}
-        open={openNotifications}
-      />*/}
+      <RecentTabsBar
+        onClose={handleTabsBarClose}
+        open={openTabsBar}
+      />
     </AppBar>
   );
 };

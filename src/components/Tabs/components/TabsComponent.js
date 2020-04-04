@@ -1,10 +1,9 @@
 import React, {PureComponent, memo} from 'react';
 import PropTypes from 'prop-types';
+import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import browserHistory from 'redux/history';
-import {SortableContainer, SortableElement} from 'react-sortable-hoc';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faTimes} from '@fortawesome/free-solid-svg-icons'
 import './TabsComponents.scss';
+import {navigateTo} from '../../../utils';
 
 const tabListProps = {
   axis: 'x',
@@ -15,7 +14,7 @@ const tabListProps = {
   transitionDuration: 100,
 };
 
-class TabItemComponent extends PureComponent {
+class TabItem extends PureComponent {
   static propTypes = {
     tab: PropTypes.object.isRequired,
     removeTab: PropTypes.func.isRequired,
@@ -41,21 +40,18 @@ class TabItemComponent extends PureComponent {
           <span>{tab.title}</span>
         </div>
         <div className="tab-close" onClick={this.removeTab}>
-          <FontAwesomeIcon icon={faTimes}/>
+          <CloseRoundedIcon fontSize='small'/>
         </div>
       </div>
     );
   }
 }
 
-const TabItem = SortableElement(TabItemComponent);
-
-const TabListComponent = (
-  {
-    items,
-    removeTab,
-    activateTab,
-  }) => {
+const TabList = memo(function TabListComponent({
+                                                 items,
+                                                 removeTab,
+                                                 activateTab,
+                                               }) {
   const tabs = items.map((tab, index) => (
     <TabItem
       key={tab.id}
@@ -67,9 +63,7 @@ const TabListComponent = (
   ));
 
   return <div className="tab-list">{tabs}</div>;
-};
-
-const TabList = SortableContainer(memo(TabListComponent));
+});
 
 class TabsComponents extends PureComponent {
   static propTypes = {
@@ -79,10 +73,18 @@ class TabsComponents extends PureComponent {
     orderTabs: PropTypes.func.isRequired,
   };
 
-  onSortEnd = ({oldIndex, newIndex}) => {
-    this.props.orderTabs({oldIndex, newIndex});
-    this.props.activateTab(this.props.tabs[newIndex]);
-    browserHistory.push(this.props.tabs[newIndex].link);
+  // Me preocupa el rendimiento, no es muy bonito esto tampoco
+  _removeTab = tab => {
+    this.props.removeTab(tab);
+    let tabs = this.props.tabs.slice();
+    const tabIndex = tabs.findIndex(t => t.id === tab.id);
+    if (tab.active) {
+      const nextIndex = tabIndex - 1;
+      if (nextIndex !== -1) {
+        browserHistory.push(tabs[nextIndex].link);
+      } else
+        navigateTo('inicio');
+    }
   };
 
   render() {
@@ -90,9 +92,9 @@ class TabsComponents extends PureComponent {
       <div className="TabsComponents">
         <TabList
           helperClass="sortableHelper"
-          onSortEnd={this.onSortEnd}
+          // onSortEnd={this.onSortEnd}
           items={this.props.tabs}
-          removeTab={this.props.removeTab}
+          removeTab={this._removeTab}
           activateTab={this.props.activateTab}
           {...tabListProps}
         />

@@ -1,4 +1,4 @@
-import React, {Fragment, memo} from 'react';
+import React, {memo} from 'react';
 import PropTypes from 'prop-types';
 import {
   Modal,
@@ -6,36 +6,18 @@ import {
   CardHeader,
   CardContent,
   CardActions,
-  Grid,
-  Divider,
-  Button,
+  Divider, Button,
 } from '@material-ui/core';
-import {useStyles} from './ModalBase.styles';
+import {useStyles} from './ModalGeneric.styles';
 
 
-const ModalBase =
-  ({show, close, title, children, action, actions}) => {
+const ModalGeneric =
+  ({show, close, title, children, actions}) => {
     const classes = useStyles();
 
     if (!show) {
       return null;
     }
-
-    /**
-     * Render all buttons
-     * @returns {CardActions}
-     * @private
-     */
-    const _renderButtons = () =>
-      <Fragment>
-        <Button onClick={close} className={classes.buttonCancel}>
-          {action ? 'Cancelar' : 'Cerrar'}
-        </Button>
-        {action && <Button onClick={action} className={classes.buttonAccept}>
-          Aceptar
-        </Button>}
-      </Fragment>
-    ;
 
     /**
      *
@@ -56,23 +38,16 @@ const ModalBase =
         onClose={close}
         open={show}
       >
-        <Card
-          className={classes.root}
-        >
+        <Card className={classes.root}>
           <form>
             <CardHeader title={title}/>
             <Divider/>
             <CardContent>
-              <Grid
-                container
-                spacing={3}
-              >
-                {children}
-              </Grid>
+              {children}
             </CardContent>
             <Divider/>
             <CardActions className={classes.actions}>
-              {actions?.map(_renderButton) || _renderButtons()}
+              {actions?.map(_renderButton)}
             </CardActions>
           </form>
         </Card>
@@ -80,15 +55,14 @@ const ModalBase =
     );
   };
 
-ModalBase.propTypes = {
+ModalGeneric.propTypes = {
   close: PropTypes.func,
   show: PropTypes.bool,
   title: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
-  action: PropTypes.func,
   actions: PropTypes.array,
 };
 
-ModalBase.displayName = 'ModalBase';
+ModalGeneric.displayName = 'ModalGeneric';
 
-export default memo(ModalBase);
+export default memo(ModalGeneric);

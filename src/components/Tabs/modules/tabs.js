@@ -3,12 +3,16 @@ import createReducer from 'redux/create-reducer';
 // TODO: Mejorar esto en algun momento
 
 import {ACTIVATE_TAB, REMOVE_TAB, ORDER_TABS, RENAME_TAB} from 'action-types';
+import {addHistoryTab} from 'reducers/historytabs';
 
 export const activateTab = tab => {
   return {type: ACTIVATE_TAB, tab};
 };
 
-export const removeTab = tab => ({type: REMOVE_TAB, tab});
+export const removeTab = tab => dispatch => {
+  dispatch(addHistoryTab(tab));
+  dispatch({type: REMOVE_TAB, tab});
+};
 
 export const orderTabs = ({oldIndex, newIndex}) => ({
   type: ORDER_TABS,
@@ -71,7 +75,7 @@ const ACTION_HANDLERS = {
       const tabs = state.slice();
       const tab = tabs.find(t => t.id === tabId);
       tab.title = name;
-      return setActiveTab(tabs, tab.id);;
+      return setActiveTab(tabs, tab.id);
     }
     return state;
   },

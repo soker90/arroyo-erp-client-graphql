@@ -8,6 +8,7 @@ import modal from './modal';
 
 import userReducers from './userData';
 import tabs from 'components/Tabs/modules/tabs';
+import historytabs from './historytabs';
 
 export default history =>
   combineReducers({
@@ -17,5 +18,6 @@ export default history =>
     router: connectRouter(history),
     loadingBar,
     tabs,
+    historytabs,
     ...userReducers,
   });

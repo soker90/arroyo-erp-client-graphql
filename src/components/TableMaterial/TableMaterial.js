@@ -81,6 +81,7 @@ const TableMaterial = memo(({className, options = {}, components = {}, ...rest})
       options={{
         pageSize: 10,
         rowStyle: _setRowStyle,
+        actionsColumnIndex: -1,
         ...options,
       }}
       components={{

@@ -1,73 +1,31 @@
 import React, {memo} from 'react';
 import PropTypes from 'prop-types';
-import {
-  Modal,
-  Card,
-  CardHeader,
-  CardContent,
-  CardActions,
-  Grid,
-  Divider,
-  Button,
-} from '@material-ui/core';
-import {useStyles} from './ModalCloseSaveButtons.styles';
+import ModalBase from '../ModalBase';
 
 
-const ModalCloseSaveButtons = memo(
-  ({show, close, title, children, action, headerAction}) => {
-    const classes = useStyles();
-
-    if (!show) {
-      return null;
-    }
-
-    /**
-     * Render all buttons
-     * @returns {CardActions}
-     * @private
-     */
-    const _renderButtons = () =>
-      <CardActions className={classes.actions}>
-        <Button onClick={close}>
-          Cerrar
-        </Button>
-        <Button
-          color="primary"
-          onClick={action}
-          variant="contained"
-        >
-          Guardar
-        </Button>
-      </CardActions>;
-
+const ModalCloseSaveButtons =
+  ({show, close, title, children, action}) => {
+    const buttons = [
+      {onClick: close, value: 'Cerrar'},
+      {
+        color: 'primary',
+        onClick: action,
+        variant: 'contained',
+        value: 'Guardar',
+      },
+    ];
 
     return (
-      <Modal
-        onClose={close}
-        open={show}
+      <ModalBase
+        close={close}
+        show={show}
+        actions={buttons}
+        title={title}
       >
-        <Card
-          className={classes.root}
-        >
-          <form>
-            <CardHeader title={title} action={headerAction}/>
-            <Divider/>
-            <CardContent>
-              <Grid
-                container
-                spacing={3}
-              >
-                {children}
-              </Grid>
-            </CardContent>
-            <Divider/>
-            {_renderButtons()}
-          </form>
-        </Card>
-      </Modal>
+        {children}
+      </ModalBase>
     );
-  })
-;
+  };
 
 ModalCloseSaveButtons.propTypes = {
   close: PropTypes.func,
@@ -75,9 +33,8 @@ ModalCloseSaveButtons.propTypes = {
   title: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.array, PropTypes.object]).isRequired,
   action: PropTypes.func.isRequired,
-  headerAction: PropTypes.func,
 };
 
 ModalCloseSaveButtons.displayName = 'ModalCloseSaveButtons';
 
-export default ModalCloseSaveButtons;
+export default memo(ModalCloseSaveButtons);

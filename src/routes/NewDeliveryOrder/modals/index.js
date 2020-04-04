@@ -1,8 +1,6 @@
-import EditProvider from './EditProvider';
-import {SHOW_EDIT_PRODUCT, SHOW_EDIT_PROVIDER} from './types';
-import EditProduct from './DeleteProduct';
+import {DELETE_PRODUCT_DELIVERY_ORDER} from './types';
+import DeleteProduct from 'routes/NewDeliveryOrder/modals/DeleteProduct';
 
 export default {
-  [SHOW_EDIT_PROVIDER]: EditProvider,
-  [SHOW_EDIT_PRODUCT]: EditProduct,
+  [DELETE_PRODUCT_DELIVERY_ORDER]: DeleteProduct,
 };

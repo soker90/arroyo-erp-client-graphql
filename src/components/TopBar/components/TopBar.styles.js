@@ -4,6 +4,7 @@ import {colors} from '@material-ui/core';
 export const useStyles = makeStyles(theme => ({
   root: {
     boxShadow: 'none',
+    zIndex: theme.zIndex.appBar,
   },
   flexGrow: {
     flexGrow: 1,
@@ -57,5 +58,8 @@ export const useStyles = makeStyles(theme => ({
   },
   logoutIcon: {
     marginRight: theme.spacing(1),
+  },
+  tabsButton: {
+    marginLeft: theme.spacing(1),
   },
 }));

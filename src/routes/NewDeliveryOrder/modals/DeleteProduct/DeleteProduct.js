@@ -4,21 +4,30 @@ import {ConfirmModal} from 'components';
 
 const DeleteProduct = (
   {
-    show, close, product, onClickDelete,
+    show, close, onClickDelete, product,
   }) => {
 
   if (!show) {
     return null;
   }
 
+  /**
+   * Remove product
+   * @private
+   */
+  const _handleDelete = () => {
+    onClickDelete(product);
+    close();
+  };
+
   return (
     <ConfirmModal
       close={close}
       show={show}
       title='Eliminar producto'
-      action={onClickDelete}
+      action={_handleDelete}
       labelAction='Eliminar'
-      description={`¿Seguro que quieres eliminar el producto ${product}?`}
+      description={`¿Seguro que quieres eliminar el producto?`}
     />
   );
 };
@@ -26,7 +35,8 @@ const DeleteProduct = (
 DeleteProduct.propTypes = {
   close: PropTypes.func,
   show: PropTypes.bool,
-  product: PropTypes.string.isRequired,
+  onClickDelete: PropTypes.func.isRequired,
+  product: PropTypes.number.isRequired,
 };
 
 DeleteProduct.displayName = 'DeleteProduct';

@@ -9,5 +9,5 @@ const mapDispatchToProps = {
 export default connect(
   null,
   mapDispatchToProps,
-  null
+  null,
 )(TopBar);

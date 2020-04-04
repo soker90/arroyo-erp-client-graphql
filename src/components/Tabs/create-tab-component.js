@@ -10,24 +10,26 @@ export default (tab, ActiveTabContent) => {
   const TabsContainerComponent = props => {
     const preTabSizeRef = useRef();
     useEffect(() => {
-      preTabSizeRef.current = props.tabs.length;
+      preTabSizeRef.current = props.tabs.size;
       props.activateTab({
         ...tab,
         id: props.location.pathname,
         link: props.location.pathname,
       });
+      //eslint-disable-next-line
     }, [props.activateTab]);
 
     useEffect(() => {
-      if (preTabSizeRef.current > props.tabs.length) {
+      if (preTabSizeRef.current > props.tabs.size) {
         const tabs = props.tabs;
         const activeTab = tabs.find(t => t.active);
         if (activeTab && activeTab.link !== props.location.pathname) {
           browserHistory.push(activeTab.id);
         }
       }
-      preTabSizeRef.current = props.tabs.length;
-    }, [props.tabs.length]);
+      preTabSizeRef.current = props.tabs.size;
+      // eslint-disable-next-line
+    }, [props.tabs.size]);
 
 
     const _renderTab = activeTab => <ActiveTabContent {...props} activeTab={activeTab}/>;

@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {getProviders, getProducts} from '../actions';
+import {getProducts, getProviders} from '../actions';
 import NewAlbaran from '../components/NewDeliveryOrder';
 import {showModal} from 'reducers/modal';
 import {DELETE_PRODUCT_DELIVERY_ORDER} from 'routes/NewDeliveryOrder/modals/types';
@@ -13,7 +13,7 @@ const mapStateToProps = ({providers: {providers, provider}, products: {products}
 const mapDispatchToProps = {
   getProviders,
   getProducts,
-  showDeleteProductModal: (product, onClickDelete) =>
+  showDeleteProductModal: (onClickDelete, product) =>
     showModal({
       modalType: DELETE_PRODUCT_DELIVERY_ORDER,
       modalProps: {product, onClickDelete},
