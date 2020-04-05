@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Grid, IconButton, Tooltip} from '@material-ui/core';
 
@@ -6,8 +6,9 @@ import {InputForm, SelectForm} from 'components/Forms';
 import {useStyles} from '../NewDeliveryOrderProducts/NewDeliveryOrderProducts.styles';
 import DeleteIcon from '@material-ui/icons/Delete';
 
-const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data: {product, quantity, code}, deleteProduct}) => {
+const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data: {product, quantity}, deleteProduct}) => {
   const classes = useStyles();
+  const [code, setCode] = useState('');
 
   /**
    * Handle change select
@@ -16,7 +17,8 @@ const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data: {p
    */
   const _handleSelect = ({target: {value}}) => {
     const selected = products.find(product => product._id === value);
-    updateProduct(index, {product: value, quantity, code: selected?.code || ''});
+    updateProduct(index, {product: value, quantity});
+    setCode(selected?.code || '');
   };
 
   /**
@@ -26,7 +28,8 @@ const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data: {p
    */
   const _handleCode = ({target: {value}}) => {
     const selected = products.find(product => product.code === value);
-    updateProduct(index, {product: selected?._id || '', code: value, quantity});
+    updateProduct(index, {product: selected?._id || '', quantity});
+    setCode(value);
   };
 
   /**
@@ -35,7 +38,7 @@ const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data: {p
    * @private
    */
   const _handleChangeQuantity = ({target: {value}}) => {
-    updateProduct(index, {product, code, quantity: value});
+    updateProduct(index, {product, quantity: parseFloat(value)});
   };
 
   /**

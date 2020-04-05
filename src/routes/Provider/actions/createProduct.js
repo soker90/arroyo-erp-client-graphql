@@ -2,14 +2,14 @@ import axios from 'axios';
 import {CREATE_PRODUCT} from 'actions/types';
 
 /**
- * Request action for createProduct
+ * Request action for createDeliveryOrder
  * @returns {{type: string}}
  * @private
  */
 const _createProductRequest = () => ({type: CREATE_PRODUCT.REQUEST});
 
 /**
- * Success action for createProduct
+ * Success action for createDeliveryOrder
  * @param {Object} data
  * @returns {{type: (string|string), providers: {all: *}}}
  * @private
@@ -26,7 +26,7 @@ const _createProductSuccess = ({data}) => ({
 });
 
 /**
- * Error action for createProduct
+ * Error action for createDeliveryOrder
  * @param error
  * @returns {{type: string, error: _getInitDataError.props}}
  * @private

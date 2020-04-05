@@ -11,3 +11,4 @@ export const EDIT_PRODUCT = requestActions('EDIT_PRODUCT');
 
 // Albarán
 export const GET_PRODUCTS_NEW_ALBARAN = requestActions('GET_PRODUCTS_NEW_ALBARAN');
+export const CREATE_DELIVERY_ORDER = requestActions('CREATE_DELIVERY_ORDER');

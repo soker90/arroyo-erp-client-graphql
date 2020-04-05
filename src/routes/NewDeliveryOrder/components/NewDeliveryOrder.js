@@ -7,7 +7,8 @@ import NewDeliveryOrderData from './NewDeliveryOrderData';
 import NewDeliveryOrderProducts from './NewDeliveryOrderProducts';
 import {useStyles} from './NewDeliveryOrder.styles';
 
-const NewDeliveryOrder = ({provider, providers, getProviders, products, getProducts, showDeleteProductModal}) => {
+const NewDeliveryOrder = (
+  {provider, providers, getProviders, products, getProducts, showDeleteProductModal, createDeliveryOrder}) => {
   const [data, setData] = useReducer(
     (state, newState) => ({...state, ...newState}),
     {
@@ -66,7 +67,7 @@ const NewDeliveryOrder = ({provider, providers, getProviders, products, getProdu
   };
 
   const _handleClickSave = () => {
-
+    createDeliveryOrder({...data, products: selectedProducts});
   };
 
   return <ContainerTab>

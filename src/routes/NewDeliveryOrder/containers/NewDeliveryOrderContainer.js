@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import {getProducts, getProviders} from '../actions';
+import {getProducts, getProviders, createDeliveryOrder} from '../actions';
 import NewAlbaran from '../components/NewDeliveryOrder';
 import {showModal} from 'reducers/modal';
 import {DELETE_PRODUCT_DELIVERY_ORDER} from 'routes/NewDeliveryOrder/modals/types';
@@ -18,6 +18,7 @@ const mapDispatchToProps = {
       modalType: DELETE_PRODUCT_DELIVERY_ORDER,
       modalProps: {product, onClickDelete},
     }),
+  createDeliveryOrder,
 };
 
 export default connect(
