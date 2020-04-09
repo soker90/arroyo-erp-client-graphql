@@ -8,3 +8,4 @@ export * from './booleans';
 export * from './files';
 export * from './arrays';
 export * from './dates';
+export * from './numbers';

@@ -1,10 +1,11 @@
 import React, {memo, useState} from 'react';
 import PropTypes from 'prop-types';
 import {Grid, IconButton, Tooltip} from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import {InputForm, SelectForm} from 'components/Forms';
-import {useStyles} from '../NewDeliveryOrderProducts/NewDeliveryOrderProducts.styles';
-import DeleteIcon from '@material-ui/icons/Delete';
+import {useStyles} from './NewDeliveryOrderProductsSelect.styles';
+import {stringToNumber} from 'utils';
 
 const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data: {product, quantity}, deleteProduct}) => {
   const classes = useStyles();
@@ -38,7 +39,7 @@ const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data: {p
    * @private
    */
   const _handleChangeQuantity = ({target: {value}}) => {
-    updateProduct(index, {product, quantity: parseFloat(value)});
+    updateProduct(index, {product, quantity: stringToNumber(value)});
   };
 
   /**
@@ -79,13 +80,13 @@ const NewDeliveryOrderProductSelect = ({index, products, updateProduct, data: {p
       size={4}
     >
       <option value="">--------</option>
-      {products?.map((item, idx) => (
+      {products?.map((item, idx) =>
         <option key={idx} value={item._id}>
           {item.name}
-        </option>
-      ))}
+        </option>,
+      )}
     </SelectForm>
-    <InputForm label='Peso / Cantidad' value={quantity} onChange={_handleChangeQuantity} size={3}/>
+    <InputForm label='Peso / Cantidad' defaultValue={quantity} onChange={_handleChangeQuantity} size={3} type='number'/>
     {_renderDeleteButton()}
   </Grid>
 };

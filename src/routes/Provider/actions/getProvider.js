@@ -23,6 +23,9 @@ const _getProviderSuccess = ({data}) => ({
   products: {
     products: data.getProducts,
   },
+  deliveryOrders: {
+    deliveryOrders: data.getDeliveryOrders,
+  },
 });
 
 /**
@@ -61,6 +64,9 @@ export const getProvider = (id, tabId) => async dispatch => {
               name
               amount
               updateDate
+            }
+            getDeliveryOrders(provider: "${id}") {
+              date
             }
           }`,
       },

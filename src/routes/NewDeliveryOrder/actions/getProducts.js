@@ -2,7 +2,7 @@ import axios from 'axios';
 import {GET_PRODUCTS_NEW_ALBARAN} from 'actions/types';
 
 /**
- * Request action for getProducts
+ * Request action for getDeliveryOrders
  * @returns {{type: string}}
  * @private
  */
@@ -22,7 +22,7 @@ const _getProductsSuccess = ({data}) => ({
 });
 
 /**
- * Error action for getProducts
+ * Error action for getDeliveryOrders
  * @param error
  * @returns {{type: string, error: _getProductsError.props}}
  * @private

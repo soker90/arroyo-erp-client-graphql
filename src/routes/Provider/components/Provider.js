@@ -13,7 +13,7 @@ import ProviderProductTable from './ProviderProductTable';
 const Provider = (
   {
     provider, match, getProvider, activeTab: {id: tabId}, showEditProviderModal, products,
-    showEditProductModal,
+    showEditProductModal, deliveryOrders,
   }) => {
   // const classes = useStyles();
   useEffect(() => {
@@ -32,7 +32,7 @@ const Provider = (
         <ProviderStats name='8' address='C/Alcantarilal, 3' email='abuela@abuela.es' phone='926926926'/>
       </Grid>
       <ProviderInvoiceTable/>
-      <ProviderAlbaranTable/>
+      <ProviderAlbaranTable deliveryOrders={deliveryOrders}/>
       <ProviderProductTable products={products} showEditProductModal={showEditProductModal}/>
     </ContentTab>
   </ContainerTab>;

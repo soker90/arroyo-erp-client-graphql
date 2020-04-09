@@ -12,7 +12,7 @@ const _createDeliveryOrderRequest = () => ({type: CREATE_DELIVERY_ORDER.REQUEST}
 /**
  * Success action for createDeliveryOrder
  * @param {Object} data
- * @returns {{type: (string|string), providers: {all: *}}}
+ * @returns {{notification: {level: string, message: ((function({date?: *, provider: *, products: *}): function(...[*]=))|createDeliveryOrder)}, type: string}}
  * @private
  */
 const _createDeliveryOrderSuccess = ({data}) => ({
@@ -41,12 +41,11 @@ const _createDeliveryOrderError = error => ({
 export const createDeliveryOrder = ({date, provider, products}) => async dispatch => {
   dispatch(_createDeliveryOrderRequest());
 
-  console.log(JSON.stringify(products))
   try {
     const {data} = await axios.post('',
       {
         query: `
-          mutation ($date: String, $provider: String!, $products: [DeliveryNoteProductInput]) { 
+          mutation ($date: String, $provider: String!, $products: [DeliveryOrderProductInput]) { 
             createDeliveryOrder(date: $date, provider: $provider, products: $products)
           }`,
         variables: {
@@ -56,8 +55,6 @@ export const createDeliveryOrder = ({date, provider, products}) => async dispatc
         },
       },
     );
-
-    console.log(data);
 
     if (data.errors) {
       dispatch(_createDeliveryOrderError(data.errors[0]));
