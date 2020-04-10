@@ -56,14 +56,13 @@ export const createDeliveryOrder = ({date, provider, products}) => async dispatc
       },
     );
 
-    if (data.errors) {
+    if (data.errors)
       dispatch(_createDeliveryOrderError(data.errors[0]));
-      return;
-    }
-    dispatch(_createDeliveryOrderSuccess(data));
+    else
+      dispatch(_createDeliveryOrderSuccess(data));
 
   } catch (error) {
-    console.log(error);
+    console.log('oo', error);
     dispatch(_createDeliveryOrderError(error))
   }
 };

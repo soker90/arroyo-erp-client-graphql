@@ -13,12 +13,15 @@ export const notificationDefaultParams = {
 const failureRegexp = /_FAILURE$/;
 const internalError = '500: Error en el servidor';
 
-const _parseErrorMessage = ({response}) => {
-  const statusCatch = response?.status;
+const _parseErrorMessage = error => {
+  if(error?.message)
+    return [error.message];
+
+  const statusCatch = error?.response?.status;
   if (statusCatch === 500)
     return [internalError];
 
-  const errors = response?.data.errors;
+  const errors = error?.response?.data.errors;
   return errors ? errors.map(({message}) => message) : [];
 };
 
@@ -38,7 +41,6 @@ const notificationsMiddleware = store => next => action => {
     }
   } else if (failureRegexp.test(action.type)) {
     const errors = _parseErrorMessage(action?.error);
-    console.log(errors)
     if (errors.length) {
       errors.forEach(message => {
         const notificationAction = addNotification({
