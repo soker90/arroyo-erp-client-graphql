@@ -12,9 +12,7 @@ axios.defaults.withCredentials = true;
 export default dispatch => {
   axios.interceptors.response.use(
     response => {
-      const token = response.config.headers.Authorization;
-      console.log(response.headers)
-      console.log(token)
+      const token = response.headers.token;
       localStorage.setItem(ARROYO_TOKEN, token);
       axios.defaults.headers.common['Authorization'] = `${token}`;
       return response;
