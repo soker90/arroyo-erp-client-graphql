@@ -61,9 +61,11 @@ export const getProvider = (id, tabId) => async dispatch => {
             }
             getProducts(provider: "${id}") {
               _id
+              code
               name
+              iva
+              re
               amount
-              updateDate
             }
             getDeliveryOrders(provider: "${id}") {
               date

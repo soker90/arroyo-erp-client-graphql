@@ -11,7 +11,7 @@ const _editProductRequest = () => ({type: EDIT_PRODUCT.REQUEST});
 /**
  * Success action for editProduct
  * @param {Object} data
- * @returns {{type: (string|string), providers: {all: *}}}
+ * @returns {{notification: {level: string, message: *}, type: string, products: {products: *}}}
  * @private
  */
 const _editProductSuccess = ({data}) => ({
@@ -39,11 +39,21 @@ const _editProductError = error => ({
 /**
  * Edita un producto y devuelve
  * una lista con todos los prouctos incluido
- * @param {Object} params
+ * @param {String} _id
+ * @param {String} code
+ * @param {String} name
+ * @param {String} provider
+ * @param {Number} amount
+ * @param {Number} iva
+ * @param {Number} re
  * @param {Function} callback
  * @returns {function(...[*]=)}
  */
-export const editProduct = ({_id, code, name, provider, updateDate, amount}, callback) => async dispatch => {
+export const editProduct = (
+  {
+    _id, code, name, provider, amount, iva, re,
+  },
+  callback) => async dispatch => {
   dispatch(_editProductRequest());
 
   try {
@@ -51,13 +61,15 @@ export const editProduct = ({_id, code, name, provider, updateDate, amount}, cal
       {
         query: `
           mutation { 
-            editProduct(input: {_id: "${_id}", code: "${code}", name: "${name}", provider: "${provider}"}) {
+            editProduct(input: {_id: "${_id}", code: "${code}", name: "${name}", provider: "${provider}", amount: ${amount}, iva: ${iva}, re: ${re}}) {
               message
               products {
                 _id
                 name
                 code
-                updateDate
+                amount
+                iva
+                re
               }
             }
           }`,

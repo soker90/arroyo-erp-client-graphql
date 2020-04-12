@@ -33,12 +33,8 @@ const ProviderProductTable = ({products, showEditProductModal}) => {
         {title: 'Código', field: 'code'},
         {title: 'Nombre', field: 'name'},
         {title: 'Precio', field: 'amount'},
-        {
-          title: 'Fecha de actualización',
-          field: 'updateDate',
-          type: 'datetime',
-          render: ({updateDate}) => dateShort(updateDate),
-        },
+        {title: 'IVA', field: 'iva'},
+        {title: 'R.E.', field: 're'},
       ]}
       data={products}
       title={`Productos (${products.length})`}

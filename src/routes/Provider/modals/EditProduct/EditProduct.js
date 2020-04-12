@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Button, Card, CardActions, CardContent, CardHeader, Divider, Grid, Modal} from '@material-ui/core';
 import {useStyles} from './EditProduct.styles';
 import {InputForm} from 'components';
+import {stringToNumber} from 'utils';
 
 const EditProduct = (
   {
@@ -22,6 +23,9 @@ const EditProduct = (
     ...(product && {
       _id: product._id,
     }),
+    amount: product?.amount || '',
+    iva: product?.iva || '',
+    re: product?.re || '',
   };
 
   const [state, setState] = useReducer(
@@ -39,12 +43,16 @@ const EditProduct = (
 
   /**
    * Handle change inputs
+   * Convert to number for field necessary
    * @param {String} name
    * @param {String} value
    * @private
    */
   const _handleChange = ({target: {name, value}}) => {
-    setState({[name]: value});
+    if (['amount', 'iva', 're'].includes(name))
+      setState({[name]: stringToNumber(value)});
+    else
+      setState({[name]: value});
   };
 
   /**
@@ -69,7 +77,7 @@ const EditProduct = (
       label={label}
       name={name}
       onChange={_handleChange}
-      value={state[name]}
+      defaultValue={state[name]}
       variant="outlined"
       {...others}
     />;
@@ -111,6 +119,9 @@ const EditProduct = (
             >
               {_renderInput('Código', 'code')}
               {_renderInput('Nombre', 'name')}
+              {_renderInput('Precio', 'amount')}
+              {_renderInput('IVA', 'iva')}
+              {_renderInput('R.E.', 're')}
             </Grid>
           </CardContent>
           <Divider/>

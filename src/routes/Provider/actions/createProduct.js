@@ -11,7 +11,7 @@ const _createProductRequest = () => ({type: CREATE_PRODUCT.REQUEST});
 /**
  * Success action for createDeliveryOrder
  * @param {Object} data
- * @returns {{type: (string|string), providers: {all: *}}}
+ * @returns {{notification: {level: string, message: *}, type: string, products: {products: *}}}
  * @private
  */
 const _createProductSuccess = ({data}) => ({
@@ -39,9 +39,16 @@ const _createProductError = error => ({
 /**
  * Crea un nuevo producto para el proveedor y devuelve
  * una lista con todos los prouctos incluido el nuevo
+ * @param {String} code
+ * @param {String} name
+ * @param {String} provider
+ * @param {Number} amount
+ * @param {Number} iva
+ * @param {Number} re
+ * @param {Function} callback
  * @returns {function(...[*]=)}
  */
-export const createProduct = ({code, name, provider}, callback) => async dispatch => {
+export const createProduct = ({code, name, provider, amount, iva, re}, callback) => async dispatch => {
   dispatch(_createProductRequest());
 
   try {
@@ -49,13 +56,15 @@ export const createProduct = ({code, name, provider}, callback) => async dispatc
       {
         query: `
           mutation { 
-            createProduct(code: "${code}", name: "${name}", provider: "${provider}") {
+            createProduct(code: "${code}", name: "${name}", provider: "${provider}", amount: ${amount}, iva: ${iva}, re: ${re}) {
               message
               products {
                 _id
                 name
                 code
-                updateDate
+                amount
+                iva
+                re
               }
             }
           }`,
